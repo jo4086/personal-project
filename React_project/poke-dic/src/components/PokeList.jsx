@@ -1,9 +1,10 @@
 import './css/PokeList.css'
+import PokeImagesTest from './PokeImagesTest.jsx'
 
 function PokeList() {
    return (
-      <div>
-         <div></div>
+      <div className="PokeList">
+         <PokeImagesTest />
       </div>
    )
 }
