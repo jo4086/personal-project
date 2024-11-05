@@ -1,10 +1,10 @@
 import './css/PokeList.css'
-import PokeImagesTest from './PokeImagesTest.jsx'
+import PokeListImages from './PokeListImages.jsx'
 
 function PokeList() {
    return (
       <div className="PokeList">
-         <PokeImagesTest />
+         <PokeListImages />
       </div>
    )
 }

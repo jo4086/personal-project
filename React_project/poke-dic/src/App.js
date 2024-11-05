@@ -3,7 +3,7 @@ import PokeTemplate from './components/PokeTemplate.jsx'
 import PokeList from './components/PokeList.jsx'
 import PokeInsert from './components/PokeInsert.jsx'
 // import PokeImages from './components/PokeImages.jsx'
-import PokeImagesTest from './components/PokeImagesTest.jsx'
+import PokeListImages from './components/PokeListImages.jsx'
 
 function App() {
    const [pokes, setPokes] = useState([
@@ -19,9 +19,7 @@ function App() {
    // const onInsert
    return (
       <PokeTemplate>
-         {/* <PokeImages /> */}
          <PokeInsert />
-         <PokeImagesTest />
          <PokeList />
       </PokeTemplate>
    )

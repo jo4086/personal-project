@@ -12,7 +12,7 @@ const importAll = (r) => {
 const images = importAll(require.context('../images/pokemon', false, /\w_/))
 // console.log(images)
 
-const PokeImagesTest = () => {
+const PokeListImages = () => {
    // 이미지 배열 생성
    const imageArray = Object.keys(images).map((key) => {
       const parts = key.split('_')
@@ -71,4 +71,4 @@ const PokeImagesTest = () => {
    )
 }
 
-export default PokeImagesTest
+export default PokeListImages
