@@ -12,8 +12,8 @@ const importAll = (r) => {
 
 // 이미지 가져오기
 const images = importAll(require.context('../images/pokemon', false, /\w_/))
-
-console.log(Object.keys(images).length)
+console.log(images)
+// console.log(Object.keys(images).length)
 
 // 포켓몬 정보 추출 함수
 function extractPokemonInfo(fileName) {

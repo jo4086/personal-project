@@ -3,14 +3,13 @@ const importAll = (r) => {
    r.keys().forEach((item) => {
       images[item.replace('./', '')] = r(item)
    })
-   console.log(images)
+   // console.log(images)
 
    return images
 }
 
 // 이미지 가져오기
 const images = importAll(require.context('../images/pokemon', false, /\w_/))
-// console.log(images)
 
 const PokeListImages = () => {
    // 이미지 배열 생성
@@ -48,8 +47,8 @@ const PokeListImages = () => {
          tribes[image.tribeNumber].members.push(image) // 종족 멤버 추가
       }
    })
-   console.log(imageArray)
-   console.log(tribes)
+   // console.log(imageArray)
+   // console.log(tribes)
    return (
       <div>
          {Object.keys(tribes).map((tribeNumber) => (
