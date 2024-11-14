@@ -1,0 +1,29 @@
+* {
+   width: 100%;
+   margin: 0 auto;
+}
+.container {
+   background-color: yellow;
+   padding: 0;
+   /* margin: 40 auto 0 auto; */
+   width: 100%;
+   height: 1000px;
+   margin-top: 40px;
+   box-shadow: 0 0 4px 0px black;
+
+}
+.container > * {
+   width: 100%;
+}
+.container .title {
+   display: flex;
+   justify-content: center;
+   background-color: greenyellow;
+}
+.container .title img {
+   width: 200px;
+   object-fit: cover;
+}
+.container .main {
+   background-color: aqua;
+}
