@@ -139,13 +139,13 @@ API Data (json)
    > > units={measurement}&\
    > > lang={country}
    >
-   > api.openweathermap.org/data/2.5/forecast?q=incheon&appid=f24ef11ff3ac3759827b92ca024bf829
+   > api.openweathermap.org/data/2.5/forecast?q=incheon&appid=f24ef11ff3ac3759827b92ca024bf829&units=metric&lang=kr
 
 -  대한민국 8도 지역명 및 id
 
-   > api.openweathermap.org/data/2.5/group?id=1835847,1841610,1843125,1845106,1845105,1845789,1845105,1845105, 1845789,1845788,1841597,1902028,1846265&appid=f24ef11ff3ac3759827b92ca024bf829&units=metric&lang=kr
+   > api.openweathermap.org/data/2.5/group?id=1835847,1841610,1843125,1845106,1845105,1845789,1845788,1841597,1902028,1846265&appid=f24ef11ff3ac3759827b92ca024bf829&units=metric&lang=kr
 
-   > 1835847,1841610,1843125,1845106,1845105,1845789,1845105,1845105, 1845789,1845788,1841597,1902028,1846265
+   > 1835847,1841610,1843125,1845106,1845105,1845789,1845788,1841597,1902028,1846265
 
    -  대한민국 : Republic of Korea\
        id : 1835841\
