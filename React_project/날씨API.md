@@ -1,53 +1,3 @@
-API Data (json)
-
-```
-{
-  "coord": {
-    "lon": 126.4161,
-    "lat": 37.45
-  },
-  "weather": [
-    {
-      "id": 500,
-      "main": "Rain",
-      "description": "실 비",
-      "icon": "10d"
-    }
-  ],
-  "base": "stations",
-  "main": {
-    "temp": 14.93,
-    "feels_like": 14.36,
-    "temp_min": 14.93,
-    "temp_max": 15.99,
-    "pressure": 1021,
-    "humidity": 72,
-    "sea_level": 1021,
-    "grnd_level": 1019
-  },
-  "visibility": 10000,
-  "wind": {
-    "speed": 4.12,
-    "deg": 130
-  },
-  "clouds": {
-    "all": 75
-  },
-  "dt": 1731546000,
-  "sys": {
-    "type": 1,
-    "id": 8093,
-    "country": "KR",
-    "sunrise": 1731535969,
-    "sunset": 1731572694
-  },
-  "timezone": 32400,
-  "id": 1843561,
-  "name": "Incheon",
-  "cod": 200
-}
-```
-
 # Open Weather 개발과정
 
 ## 목차
@@ -58,6 +8,10 @@ API Data (json)
 
       -  화면 설계
       -  API key 발급
+         - openweather\
+            weather : 현재\
+            forecast : 3시간및 5일간
+         - sgis.kostat : 단계별 주소조회
       -  기본 정보
       -  폴더 구조 작성
 

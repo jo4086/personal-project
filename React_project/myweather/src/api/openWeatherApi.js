@@ -24,8 +24,8 @@ const fetchFromApi = async (url, params = {}) => {
 
 export const getWeather = (category = 'today') => {
     const endpoint = {
-        weather: '/weather',
-        forecast: '/forecast',
-        air
+       weather: '/weather',
+       forecast: '/forecast',
+       air_pollution: '/air_pollution',
     }
 }
