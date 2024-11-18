@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import Fuse from 'fuse.js'
-import data from './data/region.json'
+import data from '../data/region.json'
+import styles from './css/MenuSearch.module.css'
 
-function App() {
+function MenuSearch() {
    const [inputText, setInputText] = useState('')
    const [results, setResults] = useState([])
    const [debouncedText, setDebouncedText] = useState('')
@@ -33,17 +34,17 @@ function App() {
    }
 
    return (
-      <div>
-            <input type="text" value={inputText} onChange={onChange} />
-            <ul>
-               {results.map((item) => (
-                  <li key={item.법정동코드}>
-                     {item.시도명} {item.시군구명} {item.읍면동명} {item.리명}
-                  </li>
-               ))}
-            </ul>
+      <div className={styles.search}>
+         <input className={styles.input} type="text" value={inputText} onChange={onChange} />
+         <ul className={styles.ul}>
+            {results.map((item) => (
+               <li key={item.법정동코드}>
+                  {item.시도명} {item.시군구명} {item.읍면동명} {item.리명}
+               </li>
+            ))}
+         </ul>
       </div>
    )
 }
 
-export default App
+export default MenuSearch

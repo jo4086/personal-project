@@ -1,0 +1,35 @@
+.Banner {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 400px;
+    background-color: tan;
+    /* url 이미지는 나중에 openweather에서 받는 데이터중
+    .wather.main의 값에따라 이미지를 교체시키는 로직 구성할 것 */
+    background: url(../../../public/images/clear.jpg)no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+.Recent {
+    width: 1100px;
+    /* height: 300px; */
+    margin: 130px auto 0 auto;
+    /* border: 1px solid black; */
+}
+
+.Recent ul {
+    display: flex;
+    padding:0 100px;
+
+}
+
+.Recent ul li {
+    width: 180px;
+    height: 150px;
+    /* border:1px solid black; */
+    margin: 0 auto;
+    border-radius: 8px;
+    background-color: rgba(0,10,30,0.8);
+    color: white;
+}

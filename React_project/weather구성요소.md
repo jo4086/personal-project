@@ -25,3 +25,30 @@ api.openweathermap.org/data/2.5/weather?q=Gyeonggi-do&appid=f24ef11ff3ac3759827b
 
 
 GET http://api.openweathermap.org/data/2.5/find?q=Incheon&limit=10&appid=f24ef11ff3ac3759827b92ca024bf829
+
+
+```
+-- 폴더구조 --
+src
+├─api  : openWeatherApi.js
+├─components 
+│      ├─ Banner.jsx
+│      └─ Footer.jsx
+│      └─ Menu.jsx
+│      └─ WeatherDetail.jsx
+├─ data : region.json
+├─ featuers
+│    ├─weather : weatherSlice.js
+│    └─airPollution: airPollutionSlice.js
+├─ page
+│    ├─ Detail.jsx
+│    ├─ Home.jsx
+│    ├─ NotFound.jsx
+│    ├─ WeatherCategory.jsx
+│    ├─ SearchResults.jsx
+├─ store : store.jsx
+├─ style
+│    ├─ common.cdd
+│    └─ styledComponent.js
+└─ App.js
+```

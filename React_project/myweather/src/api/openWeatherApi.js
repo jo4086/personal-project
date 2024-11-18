@@ -7,25 +7,36 @@ const openWeather = axios.create({
    baseURL: BASE_URL,
    headers: {
       accept: 'application/json',
-      Authorization: AUTH_KEY,
    },
 })
 
 // 기본 weather API 호출 함수
 const fetchFromApi = async (url, params = {}) => {
    try {
-      const response = await openWeather.get(url, { params })
-      return resonse
-   } catch (error) {
+      const response = await openWeather.get(url, {
+         params: {
+            ...params,
+            appid: AUTH_KEY,
+         },
+      })
+      return response
+   }
+   catch (error) {
       consolo.error('API 요청 실패')
       throw error
    }
 }
 
 export const getWeather = (category = 'today') => {
-    const endpoint = {
-       weather: '/weather',
-       forecast: '/forecast',
-       air_pollution: '/air_pollution',
-    }
+   const endpoint = {
+      today: '/weather',
+      hour_3: '/forecast',
+      day_5: '/forecast',
+   }[category]
+
+   return fetchFromApi(endpoint, {
+      q: '',
+      lang: 'kr',
+      units: 'metric',
+   })
 }

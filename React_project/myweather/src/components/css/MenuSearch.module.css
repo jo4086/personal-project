@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Jua&family=Nanum+Gothic&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Jua&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+.search {
+   /* background-color: red; */
+   display: flex;
+   width: 100%;
+   flex-direction: column;
+   margin: 0;
+   padding: 0;
+   position: relative;
+}
+
+.input {
+   /* background-color: hotpink; */
+   /* color: aqua; */
+   margin: 0;
+   width: 90%;
+   padding: 0;
+   box-sizing: border-box;
+   padding-left: 30px;
+   height: 40px;
+   outline: none;
+   border-radius: 4px;
+   border: none;
+   z-index: 1;
+}
+.search .ul {
+   box-sizing: border-box;
+   display: flex;
+   flex-direction: column;
+   width: 90%;
+   background-color: rgba(240, 240, 240);
+   position: absolute;
+   top: 25px;
+   list-style-type: none;
+   padding: 0 30px;
+   /* border: 1px solid black; */
+   border-top: 0;
+   border-bottom: 0;
+   height: auto;
+   border-end-end-radius: 6px;
+}
+.search .ul li:first-child {
+   margin-top: 20px;
+}
+.search .ul li {
+   font-size: 1.1em;
+   letter-spacing: 1.1px;
+   /* font-family: 'Do Hyeon', sans-serif; */
+     /* font-family: "Jua", sans-serif; */
+     /* font-family: 'Black Han Sans', sans-serif; */
+       font-family: "Noto Sans KR", sans-serif;
+   font-weight:bold;
+   font-style: normal;
+   /* font-style: normal; */
+   /* height: 30px; */
+
+   padding: 0;
+   margin: 8px 0;
+   list-style-type: none;
+}
