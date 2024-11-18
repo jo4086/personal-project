@@ -26,6 +26,7 @@
    border-radius: 4px;
    border: none;
    z-index: 1;
+   font-size:12px;
 }
 .search .ul {
    box-sizing: border-box;

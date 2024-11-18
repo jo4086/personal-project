@@ -27,16 +27,20 @@ const fetchFromApi = async (url, params = {}) => {
    }
 }
 
-export const getWeather = (category = 'today') => {
-   const endpoint = {
-      today: '/weather',
-      hour_3: '/forecast',
-      day_5: '/forecast',
-   }[category]
-
-   return fetchFromApi(endpoint, {
-      q: '',
-      lang: 'kr',
-      units: 'metric',
-   })
+export const getWeather = () => {
+   
 }
+
+// export const getWeather = (category = 'today') => {
+//    const endpoint = {
+//       today: '/weather',
+//       hour_3: '/forecast',
+//       day_5: '/forecast',
+//    }[category]
+
+//    return fetchFromApi(endpoint, {
+//       q: '',
+//       lang: 'kr',
+//       units: 'metric',
+//    })
+// }

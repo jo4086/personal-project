@@ -17,7 +17,7 @@ function Menu() {
             <ul>
                <li className="logo">
                   <NavLink className="logo" to="/">
-                     <img src="/images/logo.svg" alt="로고" width="30" style={{ boxShadow: '0px 0px 2px 1px rgba(0,0,0,0.3)', borderRadius: '6px' }} /> <span style={{ textShadow: '0px 0px 5px rgba(0,0,0,0.8)' }}>My Weather</span>
+                     <img src="/images/logo.svg" alt="로고" width="30" style={{ boxShadow: '0px 0px 2px 1px rgba(50,50,50,0.5)', borderRadius: '8px' }} /> <span style={{ textShadow: '0px 0px 5px rgba(0,0,0,0.8)' }}>My Weather</span>
                   </NavLink>
                </li>
 

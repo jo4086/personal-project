@@ -3,11 +3,11 @@
     top: 0px;
     left: 0px;
     width: 100%;
-    height: 400px;
+    height: 360px;
     background-color: tan;
     /* url 이미지는 나중에 openweather에서 받는 데이터중
     .wather.main의 값에따라 이미지를 교체시키는 로직 구성할 것 */
-    background: url(../../../public/images/clear.jpg)no-repeat;
+    background: url(../../../public/images/rain.jpg)no-repeat;
     background-size: cover;
     background-position: center;
 }
@@ -30,6 +30,6 @@
     /* border:1px solid black; */
     margin: 0 auto;
     border-radius: 8px;
-    background-color: rgba(0,10,30,0.8);
+    background-color: rgba(0,10,30,0.7);
     color: white;
 }
