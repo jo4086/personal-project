@@ -13,30 +13,30 @@ const openWeather = axios.create({
 
 // 기본 weather API 호출 함수
 
-const fetchFromApi = async (url, params = {}) => {
-   try {
-      const response = await openWeather.get(url, {
-         params: {
-            ...params,
-            appid: AUTH_KEY,
-         },
-      })
-      return response
-   }
-   catch (error) {
-      // consolo.error(`API 요청 실패 ${error.message}`)
-      // throw error
-   }
-}
+// const fetchFromApi = async (url, params = {}) => {
+//    try {
+//       const response = await openWeather.get(url, {
+//          params: {
+//             ...params,
+//             appid: AUTH_KEY,
+//          },
+//       })
+//       return response
+//    }
+//    catch (error) {
+//       // consolo.error(`API 요청 실패 ${error.message}`)
+//       // throw error
+//    }
+// }
 
-export const getCoordinate = (region = 'south-korea') => {
-   const query = region ? `${region},KR` : 'south-korea';
+// export const getCoordinate = (region = 'south-korea') => {
+//    const query = region ? `${region},KR` : 'south-korea';
    
-   return fetchFromApi('/direct', {
-      q : query,
-      limit : region ? 10:1
-   })
-}
+//    return fetchFromApi('/direct', {
+//       q : query,
+//       limit : region ? 10:1
+//    })
+// }
    
    // export const getWeather = (category, region = 'Republic of Korea') => {
    //    const endpoint = {

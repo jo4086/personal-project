@@ -13,7 +13,7 @@ function MenuSearch() {
 
    const fuse = new Fuse(data, {
       keys: ['시도명', '시군구명', '읍면동명', '리명'],
-      threshold: 0.4,
+      threshold: 0.5,
    })
 
    // 디바운스 처리
