@@ -1,0 +1,106 @@
+{
+   "regions": [
+      {
+         "name_ko": "서울특별시",
+         "name_en": "Seoul",
+         "lat": 37.5665,
+         "lon": 126.978
+      },
+      {
+         "name_ko": "부산광역시",
+         "name_en": "Busan",
+         "lat": 35.1796,
+         "lon": 129.0756
+      },
+      {
+         "name_ko": "대구광역시",
+         "name_en": "Daegu",
+         "lat": 35.8714,
+         "lon": 128.6014
+      },
+      {
+         "name_ko": "인천광역시",
+         "name_en": "Incheon",
+         "lat": 37.4563,
+         "lon": 126.7052
+      },
+      {
+         "name_ko": "광주광역시",
+         "name_en": "Gwangju",
+         "lat": 35.1595,
+         "lon": 126.8526
+      },
+      {
+         "name_ko": "대전광역시",
+         "name_en": "Daejeon",
+         "lat": 36.3504,
+         "lon": 127.3845
+      },
+      {
+         "name_ko": "울산광역시",
+         "name_en": "Ulsan",
+         "lat": 35.5384,
+         "lon": 129.3114
+      },
+      {
+         "name_ko": "경기도",
+         "name_en": "Gyeonggi",
+         "lat": 37.4138,
+         "lon": 127.5183
+      },
+      {
+         "name_ko": "강원도",
+         "name_en": "Gangwon",
+         "lat": 37.8228,
+         "lon": 128.1555
+      },
+      {
+         "name_ko": "충청북도",
+         "name_en": "Chungbuk",
+         "lat": 36.6357,
+         "lon": 127.4917
+      },
+      {
+         "name_ko": "충청남도",
+         "name_en": "Chungnam",
+         "lat": 36.5184,
+         "lon": 126.8
+      },
+      {
+         "name_ko": "전라북도",
+         "name_en": "Jeonbuk",
+         "lat": 35.7175,
+         "lon": 127.153
+      },
+      {
+         "name_ko": "전라남도",
+         "name_en": "Jeonnam",
+         "lat": 34.8679,
+         "lon": 126.991
+      },
+      {
+         "name_ko": "경상북도",
+         "name_en": "Gyeongbuk",
+         "lat": 36.576,
+         "lon": 128.5056
+      },
+      {
+         "name_ko": "경상남도",
+         "name_en": "Gyeongnam",
+         "lat": 35.2382,
+         "lon": 128.6921
+      },
+      {
+         "name_ko": "제주특별자치도",
+         "name_en": "Jeju",
+         "lat": 33.4996,
+         "lon": 126.5312
+      },
+      {
+         "name_ko": "세종특별자치시",
+         "name_en": "Sejong",
+         "lat": 36.4876,
+         "lon": 127.2817
+      }
+   ]
+}

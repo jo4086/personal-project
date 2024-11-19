@@ -63,3 +63,8 @@
    margin: 8px 0;
    list-style-type: none;
 }
+.selected {
+   background-color: #e0e0e0; /* 선택된 항목 배경 */
+   color: #000;              /* 선택된 항목 텍스트 색상 */
+   font-weight: bold;        /* 텍스트 굵게 */
+}
