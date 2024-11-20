@@ -2,7 +2,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { getWeather, getAirPollution, getForecast } from '../api/openWeatherApi'
 
 export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ lon, lat }) => {
-   const [weatherResponse, forecastResponse, airPollutionResponse] = await Promise.all([getWeather(lat, lon), getForecast(lat, lon), getAirPollution(lat, lon)])
+   const [weatherResponse, forecastResponse, airPollutionResponse] = await Promise.all([getWeather(lon, lat), getForecast(lon, lat), getAirPollution(lon, lat)])
 
    return {
       weather: weatherResponse.data,
@@ -16,8 +16,8 @@ const weatherSlice = createSlice({
       loading: false,
       error: null,
       weathers: {},
-      forecast: {},
-      airPollution: {},
+      // forecast: {},
+      // airPollution: {},
    },
    reducers: {},
    extraReducers: (builder) => {

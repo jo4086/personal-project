@@ -27,7 +27,7 @@ const fetchFromApi = async (url, params = {}) => {
 }
 
 export const getDirects = (region) => {
-   const query = region === 'south-korea' ? 'south-korea' : `${region},KR`
+   const query = region === 'south-korea' ? '서울특별시' : `${region},KR`
 
    return fetchFromApi('/geo/1.0/direct', {
       q: query,

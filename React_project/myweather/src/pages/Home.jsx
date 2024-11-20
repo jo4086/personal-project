@@ -21,7 +21,7 @@ function Home2() {
    const dispatch = useDispatch()
 
    const { directs } = useSelector((state) => state.directs)
-   const { weathers } = useSelector((state) => state.weathers)
+   const { weathers, loading, error } = useSelector((state) => state.weathers)
    useEffect(() => {
       console.log('useEffect1')
       dispatch(fetchDirects(region))
@@ -32,8 +32,8 @@ function Home2() {
          console.log('useEffect2')
          const { lon, lat } = directs[0]
          setCoordinates({
-            lon: parseFloat(lon).toFixed(6),
-            lat: parseFloat(lat).toFixed(6),
+            lon,
+            lat,
          })
       }
    }, [directs])
@@ -47,9 +47,27 @@ function Home2() {
       dispatch(fetchWeathers(coordinates))
    }, [coordinates])
 
-   console.log(region)
-   console.log('directs:',directs)
-   console.log('weathers:',weathers)
+   // console.log(region)
+   // console.log('directs:', directs)
+   // console.log('weathers:', weathers)
+   // console.log(weathers.weather)
+   // if (weathers.weather) {
+   //    console.log(weathers.weather.weather[0].icon)
+   //    const icon = weathers.weather.weather[0].icon
+   // }
+   if (loading) {
+      return <div>Loading...</div>
+   }
+   if (error) {
+      return <div>Error: {error}</div>
+   }
+
+   // console.log(weathers.weather.weather[0].icon)
+   if (weathers?.weather?.weather?.[0]?.icon) {
+      console.log(weathers.weather.weather[0].icon)
+   } else {
+      console.log('Icon data is not available yet.')
+   }
 
    return (
       <Wrap>
@@ -58,7 +76,10 @@ function Home2() {
             <Banner />
             <WeatherNavi />
             <div className="section" style={{ width: '66.66%', height: '300px', backgroundColor: 'green', padding: '20px' }}>
-               <div className="section1"><h3></h3>module1</div>
+               <div className="section1">
+                  <h3></h3>module1
+                  <img src={`https://openweathermap.org/img/wn\${icon}`} />
+               </div>
                <div className="section2">module2</div>
                <div className="section3">module3</div>
             </div>
