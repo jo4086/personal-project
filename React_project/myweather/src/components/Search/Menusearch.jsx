@@ -1,8 +1,12 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useState, useEffect, useCallback, useRef } from 'react'
 import Fuse from 'fuse.js'
-import data from '../data/region.json'
-import styles from './css/MenuSearch.module.css'
+import data from '../../data/region.json'
+// import styles from './css/MenuSearch.module.css'
+import styles from '../css/MenuSearch.module.css'
 import SearchResults from './SearchResults'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchDirects } from '../../featuers/directSlice'
+import { useParams } from 'react-router-dom'
 
 function MenuSearch() {
    const [inputText, setInputText] = useState('')
@@ -10,6 +14,18 @@ function MenuSearch() {
    const [debouncedText, setDebouncedText] = useState('')
    const [isSearching, setIsSearching] = useState(false) // 검색 중 상태
    const [selectedIndex, setSelectedIndex] = useState(-1) // 현재 선택된 인덱스
+
+   // const dispatch = useDispatch()
+   // const isData = useRef(true)
+
+   // const { region } = useParams()
+   // console.log({region})
+   // useEffect(() => {
+   //    if (isData.current) {
+   //       isData.current = false
+   //    }
+   //    dispatch(fetchDirects(region))
+   // }, [region, dispatch])
 
    const fuse = new Fuse(data, {
       keys: ['시도명', '시군구명', '읍면동명', '리명'],

@@ -1,10 +1,11 @@
-// import { configureStore } from '@reduxjs/toolkit'
-// import weatherReducer from '../featuers/weather/weatherSlice'
-// import coordinateReducer     from '../featuers/coordinate/coordinate'
+import { configureStore } from '@reduxjs/toolkit'
+import directReducer from '../featuers/directSlice'
+import weatherReducer from '../featuers/weatherSlice'
 
-// const store = configureStore({
-//    reducer: {
-//       coordinates: coordinateReducer,
-//    },
-// })
-// export default store
+const store = configureStore({
+   reducer: {
+      directs: directReducer,
+      weathers: weatherReducer,
+   },
+})
+export default store

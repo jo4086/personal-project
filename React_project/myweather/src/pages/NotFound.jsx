@@ -1,7 +1,7 @@
 function NotFound() {
    return (
       <div>
-         <h1>홈</h1>
+         <h1>잘못된 경로입니다.</h1>
       </div>
    )
 }

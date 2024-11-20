@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react'
 import Fuse from 'fuse.js'
 import data from './data/region.json'
 
+import { fatchDirects } from './features/directSlice'
+import { useDispatch, useSelector } from 'react-redux'
+
 function App() {
    const [inputText, setInputText] = useState('')
    const [results, setResults] = useState([])
@@ -34,14 +37,14 @@ function App() {
 
    return (
       <div>
-            <input type="text" value={inputText} onChange={onChange} />
-            <ul>
-               {results.map((item) => (
-                  <li key={item.법정동코드}>
-                     {item.시도명} {item.시군구명} {item.읍면동명} {item.리명}
-                  </li>
-               ))}
-            </ul>
+         <input type="text" value={inputText} onChange={onChange} />
+         <ul>
+            {results.map((item) => (
+               <li key={item.법정동코드}>
+                  {item.시도명} {item.시군구명} {item.읍면동명} {item.리명}
+               </li>
+            ))}
+         </ul>
       </div>
    )
 }

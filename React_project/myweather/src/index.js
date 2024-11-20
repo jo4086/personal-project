@@ -10,11 +10,11 @@ import store from './store/store'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
    // <React.StrictMode>
-   // <Provider store={store}>
-      <BrowserRouter>
+   <Provider store={store}>
+      <BrowserRouter future={{ v7_relativeSplatPath: true, v7_startTransition: true }}>
          <App />
       </BrowserRouter>
-   // </Provider>
+   </Provider>
    // </React.StrictMode>
 )
 

@@ -3,7 +3,7 @@ import './css/Menu.css'
 import React, { useState } from 'react'
 
 import { IoCloseCircleOutline, IoList, IoSearch } from 'react-icons/io5'
-import MenuSearch from './Menusearch'
+import MenuSearch from './Search/Menusearch'
 
 function Menu() {
    const [tabToggle, setTabToggle] = useState(false)

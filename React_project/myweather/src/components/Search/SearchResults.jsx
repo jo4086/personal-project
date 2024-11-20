@@ -1,5 +1,6 @@
 import React, { memo } from 'react'
-import styles from './css/MenuSearch.module.css'
+// import styles from './css/MenuSearch.module.css'
+import styles from '../css/MenuSearch.module.css'
 
 const SearchResults = memo(({ results, selectedIndex, onSelect }) => {
    console.log(results)

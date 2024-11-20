@@ -1,28 +1,18 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import Menu from '../components/Menu'
-import Footer from '../components/Footer'
+import React from 'react'
+import { Routes, Route } from 'react-router-dom'
+import Today from '../components/Category/Today'
+import Hour from '../components/Category/Hour'
+import Daily from '../components/Category/Daily'
+import AirPollution from '../components/Category/AirPollution'
 
-import '../styles/common.css'
-import { Wrap, Main } from '../styles/styledComponent'
-
-function WeatherCategory({ catrgory }) {
-   const dispatch = useDispatch()
-   const [page, setPage] = useState({
-      today: 1,
-      hour_3: 1,
-      day_5: 1,
-      air_pollution: 1,
-   })
-
+function WeatherCategory() {
    return (
-      <Wrap>
-         <Menu />
-         <Main>
-            <h1>hi</h1>
-         </Main>
-         <Footer />
-      </Wrap>
+      <Routes>
+         <Route path="today" element={<Today />} />
+         <Route path="hour_3" element={<Hour />} />
+         <Route path="day_5" element={<Daily />} />
+         <Route path="air_pollution" element={<AirPollution />} />
+      </Routes>
    )
 }
 
