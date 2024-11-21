@@ -1,42 +1,161 @@
-.box * li {
-   font-size: 1.1;
-}
-.box {
-   margin: 10px 0;
-   border: none;
-   border-radius: 7px;
-   box-shadow: 0px 0px 4px 1px rgba(20, 20, 20, 0.3);
-}
-.box > p:first-child {
-   font-size: 1.2em;
-   font-weight: bold;
-   margin: 0px;
-   padding-left: 10px;
+.box1 {
+   width: 100%;
+   background-color: #9ba5a5;
+   border: 1px solid #ddd;
+   border-radius: 10px;
+   overflow: hidden;
+   box-shadow: 0 0 3px 0 black;
 }
 
-.box1 > div:nth-last-child(2) {
-   width: auto;
-   background-color: orange;
-   box-shadow: 0 0 3px 1px rgba(100, 100, 100, 1);
+/* 최상단 헤더 */
+.header {
    display: flex;
+   justify-content: space-between;
    align-items: center;
+   padding: 10px 20px;
+   /* background-color:; */
+   /* color: #fff; */
+   margin-bottom: 10px;
+   /* background-color: firebrick; */
 }
-.box1 > div:nth-last-child(1) {
-   background-color: white;
+
+.title {
+   font-size: 2em;
+   font-weight: bold;
+}
+
+.details-button {
+   padding: 5px 15px;
+   background-color: #ffffff;
+   border: none;
+   box-shadow: 0px 0px 2px 0px rgb(149, 149, 149);
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 14px;
+}
+
+.details-button:hover {
+   background-color: #bababa;
+   transition: 100ms;
+   font-weight: bold;
+}
+
+/* 콘텐츠 영역 */
+.box2 {
+   display: flex;
+   /* padding: 20px; */
+   gap: 10px;
+}
+
+/* 좌측 박스 */
+.box2-left {
+   flex: 1;
+   /* color: #fff; */
+   padding: 0px;
+   border-radius: 0 0 0 10px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
    width: 50%;
-}
-.box1 > div:first-child {
+   box-sizing: border-box;
+   justify-content: center;
 }
 
-.box1 > div ul li {
+.time {
+   font-size: 13px;
+   margin-bottom: 30px;
+   /* text-align: left; */
+   width: 85%;
+}
+
+.weather-info {
+   display: flex;
+   /* flex-direction: column; */
+   align-items: center;
+   gap: 10px;
+}
+
+.weather-image {
+   width: 180px;
+   height: 180px;
+   /* background-color: #d9d9d9; */
+   border-radius: 10px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-bottom: 10px;
+   background-position: center;
+   background-repeat: no-repeat;
+   background-size: 140%;
+}
+
+.weather-details {
+   padding: 0;
    margin: 0;
-   padding:0;
-   margin-right: 40px;
-   border: 1px solid black;
-
+   text-align: center;
 }
-.Image {
-    background-image: url(https://openweathermap.org/img/wn/10d@4x.png);
-    width: 100px;
-    height: 100px;
+
+/* .box2-left .weather-details li {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 5px; 
+} */
+
+.temperature {
+   font-size: 55px;
+   font-weight: bold;
+   /* color: #fff; */
+   margin: 0;
+}
+
+.box2-left .weather-status {
+   margin: 0;
+   font-weight: bold;
+   font-size: 20px;
+   text-align: start;
+   /* justify-content:flex-start ; */
+   justify-items: start;
+   padding-left:10px;
+
+   /* color: #e0e0e0; */
+}
+.box2-left .weather-info .weather-details {
+   /* background-color: honeydew; */
+   height: 110px;
+   padding: 0;
+   gap: 0;
+}
+
+/* 우측 박스 */
+.box2-right {
+   box-sizing: border-box;
+   width: 4%;
+   flex: 1;
+   /* background-color: #3a4fb0;  */
+   /* color: #fff; */
+   padding: 20px;
+   border-radius: 0 0 10px0;
+}
+
+.weather-details {
+   list-style: none;
+   display: flex;
+   flex-direction: column;
+   gap: 10px;
+}
+
+.box2-right .weather-details:last-child {
+   padding-top: 30px;
+   /* background-color: red; */
+}
+
+.box2-right .detail-item {
+   display: flex;
+   justify-content: space-between;
+   background-color: #fff;
+   color: #555;
+   padding: 10px 20px;
+   border-radius: 5px;
+   font-size: 14px;
+   /* text-align: start; */
 }

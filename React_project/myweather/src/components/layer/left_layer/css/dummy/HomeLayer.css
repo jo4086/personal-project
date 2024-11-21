@@ -1,0 +1,44 @@
+.box * li {
+   font-size: 1.1;
+}
+.box {
+   margin: 10px 0;
+   border: none;
+   border-radius: 7px;
+   box-shadow: 0px 0px 4px 1px rgba(20, 20, 20, 0.3);
+}
+.box > p:first-child {
+   font-size: 1.2em;
+   font-weight: bold;
+   margin: 0px;
+   padding-left: 10px;
+}
+
+.box1 > div:nth-last-child(2) {
+   width: auto;
+   background-color: orange;
+   box-shadow: 0 0 3px 1px rgba(100, 100, 100, 1);
+   display: flex;
+   align-items: center;
+}
+.box1 > div:nth-last-child(1) {
+   background-color: white;
+   width: 50%;
+}
+.box1 > div:first-child {
+}
+
+.box1 > div ul li {
+   margin: 0;
+   padding:0;
+   /* margin-right: 40px; */
+   border: 1px solid black;
+
+}
+.Img {
+   background-color: yellow;
+   background-size: 140% 140%;
+   background-position: center;
+   width: 200px;
+   height: 200px;
+}

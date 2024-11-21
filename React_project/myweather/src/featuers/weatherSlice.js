@@ -8,12 +8,14 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
    const airPollutionResponse = await getAirPollution(lon, lat)
 
    const w_data = weatherResponse.data
-   const { clouds, coord, dt, id, main, weather, sys, timezone, visibility, wind } = w_data
+   const { clouds, coord, dt, id, main, weather, sys, timezone, visibility, wind, rain } = w_data
 
    const f_data = forecastResponse.data
    const { city, list, message } = f_data
 
    const a_data = airPollutionResponse.data
+   const { aqi } = a_data.list[0].main
+   const { pm2_5, pm10, co, no2, o3, so2 } = a_data.list[0].components
    // const { components } = a_data
 
    // console.log('Weather Data:', w_data) // 날씨 데이터 확인
@@ -30,6 +32,7 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
       time: dt + timezone,
       dt,
       timezone,
+      rain: rain ? rain : null,
       temp: main.temp,
       min_temp: main.temp_min,
       max_temp: main.temp_max,
@@ -71,13 +74,17 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
         }))
 
    const filteredAirPollution = {
-      aqi: a_data.list[0].main.aqi, // aqi 값
-      pm2_5: a_data.list[0].components.pm2_5, // 미세먼지 PM2.5
-      pm10: a_data.list[0].components.pm10, // 미세먼지 PM10
-      co: a_data.list[0].components.co, // 일산화탄소
-      no2: a_data.list[0].components.no2, // 이산화질소
-      o3: a_data.list[0].components.o3, // 오존
-      so2: a_data.list[0].components.so2,
+      aqi, // aqi 값
+      pm2_5, // 미세먼지 PM2.5
+      pm10, // 미세먼지 PM10
+      co, // 일산화탄소
+      no2, // 이산화질소
+      o3, // 오존
+      so2, // 아황산가스
+      no2_ppm: no2 * 0.001 * (24.45 / 46.055),
+      so2_ppb: so2 * (24.45 / 64.066),
+      co_ppb: co * (24.45 / 28.01),
+      o3_ppb: o3 * (24.45 / 48),
    }
 
    //   console.log('Filtered Weather:', filteredWeather);   // 필터된 날씨 데이터 확인
@@ -90,6 +97,9 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
       airPollution: filteredAirPollution,
    }
 })
+
+
+
 const weatherSlice = createSlice({
    name: 'weather',
    initialState: {

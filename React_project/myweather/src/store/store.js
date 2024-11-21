@@ -3,16 +3,18 @@ import { persistReducer, persistStore } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import directReducer from '../featuers/directSlice'
 import weatherReducer from '../featuers/weatherSlice'
+import airHistoryReducer from '../featuers/airHistorySlice'
 
 const persistConfig = {
    key: 'root',
    storage,
-   whitelist: ['directs', 'weathers'], // 필요한 slice만 저장
+   whitelist: ['directs', 'weathers','airHistorys'], // 필요한 slice만 저장
 }
 
 const rootReducer = combineReducers({
    directs: directReducer,
    weathers: weatherReducer,
+   airHistorys : airHistoryReducer
 })
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

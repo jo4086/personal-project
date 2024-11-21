@@ -60,6 +60,15 @@ export const getAirPollution = (lon, lat) => {
    })
 }
 
+export const getAirHistory = (lon, lat, end) => {
+   return fetchFromApi(`${data}/air_pollution/history`, {
+      lon: lon,
+      lat: lat,
+      start: end - 28800,
+      end: end
+   })
+}
+
 // 기본 weather API 호출 함수
 
 // const fetchFromApi = async (url, params = {}) => {
