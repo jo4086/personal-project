@@ -18,3 +18,6 @@ https://api.openweathermap.org/geo/1.0/direct?q=갈담리&limit=1&appid=f24ef11f
 https://romantech.net/1160
 
 @uidotdev/usehooks
+\
+redux-persist
+:리덕스 상태를 자동으로 로컬 스토리지에 저장하고, 새로고침 시 다시 로드

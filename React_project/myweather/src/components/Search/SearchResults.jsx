@@ -8,7 +8,8 @@ const SearchResults = memo(({ results, selectedIndex, onSelect }) => {
       <ul className={styles.ul}>
          {results.map((item, index) => (
             <li key={item.법정동코드} className={index === selectedIndex ? styles.selected : ''} onClick={() => onSelect(item)}>
-               {item.시도명} {item.시군구명} {item.읍면동명} {item.리명}
+               {/* 시도명 + 합한행정명 출력 */}
+               {item.시도명} {item.합한행정명 || ''}
             </li>
          ))}
       </ul>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react'
 import Fuse from 'fuse.js'
-import data from '../../data/region.json'
+import data from '../../data/region_v2.json'
 // import styles from './css/MenuSearch.module.css'
 import styles from '../css/MenuSearch.module.css'
 import SearchResults from './SearchResults'
@@ -28,8 +28,13 @@ function MenuSearch() {
    // }, [region, dispatch])
 
    const fuse = new Fuse(data, {
-      keys: ['시도명', '시군구명', '읍면동명', '리명'],
-      threshold: 0.4,
+      // includeScore: true,
+      keys: [
+         { name: '시도명', weight: 0.1 }, // 낮은 우선순위
+         { name: '합한행정명', weight: 0.9 }, // 높은 우선순위
+      ],
+      threshold: 0.4, // 유사도 기준
+      distance: 1000, // 길이 차이에 따른 매칭 거리
    })
 
    // 디바운스 처리
