@@ -8,7 +8,7 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
    const airPollutionResponse = await getAirPollution(lon, lat)
 
    const w_data = weatherResponse.data
-   const { clouds, coord, dt, id, main, weather, sys, timezone, visibility, wind, rain } = w_data
+   const { clouds, coord, dt, id, main, weather, sys, timezone, visibility, wind, rain,name } = w_data
 
    const f_data = forecastResponse.data
    const { city, list, message } = f_data
@@ -25,6 +25,7 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
    const filteredWeather = {
       data: w_data,
       id,
+      name,
       lon: coord.lon,
       lat: coord.lat,
       clouds: clouds.all,
@@ -71,6 +72,7 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
            wind_speed: item.wind.speed, // 바람 속도
            wind_deg: item.wind.deg, // 바람 방향
            wind_gust: item.wind.gust, // 바람 돌풍
+           icon:item.weather[0].icon
         }))
 
    const filteredAirPollution = {

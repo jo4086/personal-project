@@ -4,7 +4,7 @@ import { NavLink, useParams } from 'react-router-dom'
 function WeatherNavi() {
    const { region } = useParams()
    return (
-      <div className="Navi" style={{ position: 'relative' }}>
+      <div className="Navi">
          <ul>
             <li className="navi_list">
                <NavLink to={`/weather/${region}/today`}>오늘</NavLink>

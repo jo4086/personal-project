@@ -31,7 +31,7 @@ const airHistorySlice = createSlice({
                   o3_ppb: item.components.o3 * (24.45 / 48),
                   date: new Date(item.dt * 1000).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }),
                })),
-               averageO3Ppb: action.payload.list.map((item) => item.components.o3 * (24.45 / 48)).reduce((sum, value, _, array) => sum + value / array.length, 0), // 평균 계산
+               o3_ppb_8h_average: action.payload.list.map((item) => item.components.o3 * (24.45 / 48)).reduce((sum, value, _, array) => sum + value / array.length, 0), // 평균 계산
             }
          })
          .addCase(fetchAirHistorys.rejected, (state, action) => {

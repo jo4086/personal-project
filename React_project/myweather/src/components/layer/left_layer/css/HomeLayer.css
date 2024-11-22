@@ -1,10 +1,12 @@
-.box1 {
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Jua&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap');   
+.module {
    width: 100%;
-   background-color: #9ba5a5;
+   background-color: #c6dfdf;
    border: 1px solid #ddd;
    border-radius: 10px;
    overflow: hidden;
    box-shadow: 0 0 3px 0 black;
+   margin: 15px 0;
 }
 
 /* 최상단 헤더 */
@@ -13,15 +15,23 @@
    justify-content: space-between;
    align-items: center;
    padding: 10px 20px;
-   /* background-color:; */
-   /* color: #fff; */
-   margin-bottom: 10px;
-   /* background-color: firebrick; */
+   background-color: #8bafaf;
 }
 
 .title {
-   font-size: 2em;
+   font-size: 1.6em;
    font-weight: bold;
+}
+.title2 {
+   font-size: 1.2em;
+   font-weight: bold;
+}
+.sub_title {
+   font-family: 'Do Hyeon', serif;
+   font-size: 1.3em;
+   letter-spacing: 1.1px;
+   font-weight: 400;
+    margin: 20px 0 10px 20px;
 }
 
 .details-button {
@@ -41,17 +51,17 @@
 }
 
 /* 콘텐츠 영역 */
-.box2 {
+.container {
    display: flex;
-   /* padding: 20px; */
    gap: 10px;
+   margin-top:20px;
 }
 
 /* 좌측 박스 */
-.box2-left {
+.leftBox1 {
    flex: 1;
    /* color: #fff; */
-   padding: 0px;
+   padding: 20px;
    border-radius: 0 0 0 10px;
    display: flex;
    flex-direction: column;
@@ -59,20 +69,28 @@
    width: 50%;
    box-sizing: border-box;
    justify-content: center;
+   /* border: 1px solid black; */
 }
 
 .time {
    font-size: 13px;
    margin-bottom: 30px;
    /* text-align: left; */
-   width: 85%;
+   width: 100%;
+   padding-left: 40px;
 }
 
 .weather-info {
    display: flex;
-   /* flex-direction: column; */
    align-items: center;
-   gap: 10px;
+   padding:0;
+   margin:0;
+   justify-content: center;
+}
+.weather-details {
+   padding:0;
+   margin: 0;
+   /* background-color: yellow; */
 }
 
 .weather-image {
@@ -87,69 +105,77 @@
    background-position: center;
    background-repeat: no-repeat;
    background-size: 140%;
+   /* padding:20px; */
+   /* background-color: red; */
+   margin: 20px;
 }
 
-.weather-details {
+.itemList {
    padding: 0;
    margin: 0;
    text-align: center;
 }
 
-/* .box2-left .weather-details li {
+/* .leftBox1 .itemList li {
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 5px; 
 } */
 
 .temperature {
-   font-size: 55px;
+   font-size: 50px;
    font-weight: bold;
    /* color: #fff; */
-   margin: 0;
+   margin-left: -10px;
+   /* padding-left:-10px; */
+   /* background-color: green; */
 }
 
-.box2-left .weather-status {
+.leftBox1 .weather-status {
    margin: 0;
    font-weight: bold;
    font-size: 20px;
    text-align: start;
    /* justify-content:flex-start ; */
    justify-items: start;
-   padding-left:10px;
+   /* padding-left: 10px; */
 
    /* color: #e0e0e0; */
 }
-.box2-left .weather-info .weather-details {
+.leftBox1 .weather-info .itemList {
    /* background-color: honeydew; */
    height: 110px;
    padding: 0;
    gap: 0;
+   /* justify-content: space-around; */
 }
 
 /* 우측 박스 */
-.box2-right {
+.rightBox1 {
    box-sizing: border-box;
-   width: 4%;
+   /* width: 4%; */
    flex: 1;
    /* background-color: #3a4fb0;  */
    /* color: #fff; */
-   padding: 20px;
-   border-radius: 0 0 10px0;
+   padding: 0 20px 20px 20px;
+   border-radius: 0 0 10px 0;
+   /* border: 1px solid black; */
+   
 }
 
-.weather-details {
+.itemList {
    list-style: none;
    display: flex;
    flex-direction: column;
    gap: 10px;
 }
 
-.box2-right .weather-details:last-child {
+.rightBox1 .itemList:last-child {
    padding-top: 30px;
    /* background-color: red; */
 }
 
-.box2-right .detail-item {
+.rightBox1 .items {
    display: flex;
    justify-content: space-between;
    background-color: #fff;
@@ -158,4 +184,8 @@
    border-radius: 5px;
    font-size: 14px;
    /* text-align: start; */
+}
+
+.items span:first-child {
+   color:black
 }
