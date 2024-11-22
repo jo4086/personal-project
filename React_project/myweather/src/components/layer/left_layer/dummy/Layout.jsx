@@ -1,4 +1,4 @@
-import * as Layer from './css/leftStyled'
+import * as Layer from '../css/leftStyled'
 
 function Layout({ children }) {
    return (

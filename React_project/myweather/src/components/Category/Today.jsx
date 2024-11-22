@@ -2,6 +2,7 @@
 // import Menu from '../Menu'
 // import WeatherNavi from '../WeatherNavi'
 import '../css/Category.css'
+import '../../styles/common.css'
 import { useSelector } from 'react-redux'
 import LeftLayer from '../layer/LeftLayer'
 import RightLayer from '../layer/RightLayer'

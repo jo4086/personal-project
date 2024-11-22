@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Wrap = styled.div`
    overflow: hidden;
-   min-width: ${(props) => props.$minWdith || '1100px'};
+   min-width: ${(props) => props.$minWdith || '1100px'};w
 `
 
 export const Main = styled.main`

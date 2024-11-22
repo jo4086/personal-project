@@ -1,8 +1,11 @@
+header * {
+   user-select: none;
+}
 header {
    margin-bottom: 40px;
 }
 nav {
-   background-color: rgba(196, 229, 229, 0.598);
+   background-color: rgba(53, 59, 106, 0.598);
    width: 100%;
    position: fixed;
    height: 40px;

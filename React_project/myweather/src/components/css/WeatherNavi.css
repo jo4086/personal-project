@@ -1,23 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Do+Hyeon&family=Jua&family=Nanum+Gothic&family=Noto+Sans+KR:wght@100..900&display=swap');
 
 .Navi {
-   height: 30px;
-   background-color: hotpink;
+   height: 35px;
+   /* background-color: hotpink; */
    width: 100%;
 }
 .Navi ul {
    height: 100%;
    display: flex;
    margin:0;
+   padding: 0;
+   border-bottom: 1px solid rgb(152, 152, 152);
+   box-sizing: border-box;
+   /* outline:1px solid sandybrown; */
 }
 
 .navi_list {
-   background-color: rgb(255, 241, 224);
+   /* background-color: rgb(255, 241, 224); */
    display: flex;
    justify-content: center;
    align-items: center;
    height: 100%;
    padding-top: 1px;
+   /* border-bottom: 1px solid black; */
+   box-sizing: border-box;
+   border-bottom:  1px solid black;
 }
 .navi_list * {
    margin: 0 30px;

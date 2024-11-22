@@ -12,7 +12,7 @@ function AqiCircle({ data }) {
    const totalAngle = 360 // 전체 원의 각도
    const center = { x: 50, y: 50 } // SVG 중심 좌표
    const radius = 45 // 도넛 차트 외부 반지름
-   const innerRadius = 30 // 도넛 차트 내부 반지름
+   const innerRadius = 32 // 도넛 차트 내부 반지름
 
    // 현재 데이터 값에 해당하는 색상 찾기
    const segment = segments.find(({ range }) => set >= range[0] && set <= range[1])
@@ -59,7 +59,7 @@ function AqiCircle({ data }) {
   `
 
    return (
-      <svg width="200" height="200" viewBox="0 0 100 100">
+      <svg width="250" height="250" viewBox="0 0 100 100">
          {/* <circle cx={center.x} cy={center.y} r={radius} fill="#cccc" filter="url(#shadow)" /> */}
          <defs>
             <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
@@ -69,7 +69,7 @@ function AqiCircle({ data }) {
          <circle cx={center.x} cy={center.y} r={radius} fill="#cccc" filter="url(#shadow)" />
 
          {/* 도넛 차트 */}
-         <path d={pathData} fill={fillColor} filter="url(#shadow)" />
+         <path d={pathData} fill={fillColor} />
          {/* 도넛 중심의 빈 공간 */}
          <circle cx={center.x} cy={center.y} r={innerRadius} fill="#fff" filter="url(#shadow)" />
          <text x={center.x} y={center.y} textAnchor="middle" dominantBaseline="middle" fontSize="12" fontWeight="bold" fill="#000">

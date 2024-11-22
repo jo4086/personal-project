@@ -1,6 +1,9 @@
 import './css/HomeLayer.css'
 import AqiCircle from './circle/AqiCircle'
 
+import * as L from './css/leftStyled'
+import './css/CommonLayer.css'
+
 function AirPollutionLayer({ data, region }) {
    let state = ''
 
@@ -34,61 +37,84 @@ function AirPollutionLayer({ data, region }) {
 
    return (
       <>
-         <div className="module">
-            <div className="header">
-               <div className="title">{state} </div>
-               <button className="details-button">자세히 보기</button>
-            </div>
-            <div className="sub_title">현재 대기상태</div>
-            <div className="container">
-               <div className="leftBox1">
+         <L.module>
+            <L.header style={{ gap:'0'}}>
+               <L.title>
+                  {state} <L.sub_title style={{ fontSize: '1.3rem', marginTop: '4px' }}>현재 대기상태</L.sub_title>
+               </L.title>
+               <L.details_button style={{ padding: '10px 20px', borderRadius: '10px' }}>자세히보기</L.details_button>
+            </L.header>
+            <L.container style={{ margionTop:'0', gap:'0'}}>
+               <L.leftBox1>
                   <AqiCircle data={highest} />
-               </div>
-               <div className="rightBox1">
-                  <ul className="itemList">
-                     <li className="items">
+               </L.leftBox1>
+               <L.rightBox1>
+                  <L.itemList>
+                     <L.items>
                         <span style={{ fontWeight: 'bold' }}>
-                           미세먼지{' '}
-                           <span style={{ fontSize: '0.8rem' }}>
+                           미세먼지
+                           <span style={{ fontSize: '1rem' }}>
+                              {' '}
                               PM<sub>2.5</sub>
                            </span>
-                        </span>{' '}
+                        </span>
                         <span>
                            {Number(filterPollution.pm2_5).toFixed(1)} μg/m<sup>3</sup>
                         </span>
-                     </li>
-                     <li className="items">
-                        <span style={{ fontWeight: 'bold' }}>초 미세먼지</span>{' '}
+                     </L.items>
+                     <L.items>
+                        <span style={{ fontWeight: 'bold' }}>
+                           초 미세먼지
+                           <span style={{ fontSize: '1rem' }}>
+                              {' '}
+                              PM<sub>10</sub>
+                           </span>
+                        </span>{' '}
                         <span>
                            {Number(filterPollution.pm10).toFixed(1)} μg/m<sup>3</sup>
                         </span>
-                     </li>
-                     <li className="items">
-                        <span style={{ fontWeight: 'bold' }}>오존</span> <span>{Number(filterPollution.o3_ppb * 0.001).toFixed(4)} ppm</span>
-                     </li>
-                     <li className="items">
-                        <span style={{ fontWeight: 'bold' }}>일산화탄소</span> <span>{Number(filterPollution.co_ppb * 0.001).toFixed(4)} ppm</span>
-                     </li>
-                     <li className="items">
-                        <span style={{ fontWeight: 'bold' }}>이산화질소</span> <span>{filterPollution.no2_ppm} ppm</span>
-                     </li>
-                     <li className="items">
-                        <span style={{ fontWeight: 'bold' }}>아황산가스</span> <span>{Number(filterPollution.so2_ppb * 0.001).toFixed(4)} ppm </span>
-                     </li>
-                  </ul>
-               </div>
-            </div>
-         </div>
-         <div className="module">
-            <div className="header">
-               <div className="title2">대기질 정보 </div>
-            </div>
-            <div className="sub_title">현재 대기상태</div>
-            <div className="container">
-               <div className="leftBox1"></div>
-               <div className="rightBox1"></div>
-            </div>
-         </div>
+                     </L.items>
+                     <L.items>
+                        <span style={{ fontWeight: 'bold' }}>
+                           오존
+                           <span style={{ fontSize: '1.1rem' }}>
+                              {' '}
+                              O<sub>3</sub>
+                           </span>
+                        </span>{' '}
+                        <span>{Number(filterPollution.o3_ppb * 0.001).toFixed(4)} ppm</span>
+                     </L.items>
+                     <L.items>
+                        <span style={{ fontWeight: 'bold' }}>
+                           일산화탄소
+                           <span style={{ fontSize: '1.1rem' }}> CO</span>
+                        </span>{' '}
+                        <span>{Number(filterPollution.co_ppb * 0.001).toFixed(4)} ppm</span>
+                     </L.items>
+                     <L.items>
+                        <span style={{ fontWeight: 'bold' }}>
+                           이산화질소
+                           <span style={{ fontSize: '1.1rem' }}>
+                              {' '}
+                              NO<sub>2</sub>
+                           </span>
+                        </span>{' '}
+                        <span>{filterPollution.no2_ppm} ppm</span>
+                     </L.items>
+                     <L.items>
+                        <span style={{ fontWeight: 'bold' }}>
+                           아황산가스
+                           <span style={{ fontSize: '1.1rem' }}>
+                              {' '}
+                              SO<sub>2</sub>
+                           </span>
+                        </span>{' '}
+                        <span>{Number(filterPollution.so2_ppb * 0.001).toFixed(4)} ppm </span>
+                     </L.items>
+                  </L.itemList>
+               </L.rightBox1>
+            </L.container>
+         </L.module>
       </>
    )
 }
