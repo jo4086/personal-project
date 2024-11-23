@@ -43,7 +43,6 @@ export const getWeather = (lon, lat) => {
    })
 }
 
-
 export const getForecast = (lon, lat) => {
    return fetchFromApi(`${data}/forecast`, {
       lon: lon,
@@ -65,7 +64,14 @@ export const getAirHistory = (lon, lat, end) => {
       lon: lon,
       lat: lat,
       start: end - 28800,
-      end: end
+      end: end,
+   })
+}
+
+export const getAirForecast = (lon, lat) => {
+   return fetchFromApi(`${data}/air_pollution/forecast`, {
+      lon: lon,
+      lat: lat,
    })
 }
 

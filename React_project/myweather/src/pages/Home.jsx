@@ -14,7 +14,7 @@ import WeatherNavi from '../components/WeatherNavi'
 
 import './css/Home.css'
 
-function Home2() {
+function Home() {
    const [direct, setDirect] = useState([])
    const [coordinates, setCoordinates] = useState({})
    const { region } = useParams()
@@ -50,11 +50,12 @@ function Home2() {
       console.log('Coordinates changed:', coordinates)
       if (coordinates.lon && coordinates.lat) {
          // coordinates의 값이 변경되었을 때만 실행
-         // console.log('useEffect3')
+         console.log('useEffect3')
          dispatch(fetchWeathers(coordinates))
       }
    }, [coordinates])
 
+   // console.log(memoizedWeathers)
 
    if (loading) {
       return (
@@ -89,7 +90,7 @@ function Home2() {
             <Banner />
             <WeatherNavi />
             <LayerSection>
-               <LeftLayer type="Home" data={memoizedWeathers} />
+               <LeftLayer type="Home" data={weathers} region={region} />
                <RightLayer />
             </LayerSection>
          </Main>
@@ -97,4 +98,4 @@ function Home2() {
    )
 }
 
-export default Home2
+export default Home

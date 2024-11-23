@@ -17,6 +17,7 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
    const { aqi } = a_data.list[0].main
    const { pm2_5, pm10, co, no2, o3, so2 } = a_data.list[0].components
 
+
    const filteredWeather = {
       data: w_data,
       id,
@@ -45,10 +46,6 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
       wind_speed: wind.speed,
       wind_deg: wind.deg,
    }
-
-   /*    const filteredForecast = {
-      data: list, // list를 data에 그대로 할당
-   } */
 
    const filteredForecast = message
       ? { message } // 예보 데이터에 message가 있으면 메시지만 반환

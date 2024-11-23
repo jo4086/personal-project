@@ -20,30 +20,29 @@ function HourLayer({ data, region }) {
       setState(region)
    }, [region])
    // console.log(state)
-   // console.log(data)
    const loadMore = () => {
       setModuleCount((count) => count + 5)
    }
    const link = () => {
       navigate(`/weather/${region}/today`)
    }
-
+console.log(data)
    return (
       <>
          <L.title>{state} 3시간</L.title>
-         <p style={{ margin: '5px 0' }}>검색시간 : {data.weather.date}</p>
+         <p style={{ margin: '5px 0' }}>{data.weather.date} 업데이트</p>
          {castmap.slice(0, moduleCount).map((item, index) => (
             <L.module key={index}>
                <L.header>
                   <L.sub_title>
                      <span style={{ fontSize: '0.8em', fontWeight: 'normal' }}>{item.date}</span>
                   </L.sub_title>
-                  <L.details_button type="button" onClick={link}>
+                  <L.details_button type="button" onClick={link} style={{ padding: '5px 20px', borderRadius: '10px' }}>
                      자세히 보기
                   </L.details_button>
                </L.header>
                <L.container style={{ marginTop: '0' }}>
-                  <L.leftBox1>
+                  <L.leftBox1 style={{ border: '1px solid black', padding: 0 }}>
                      <div style={{ border: '1px solid black', boxSizing: 'border-box' }}>
                         <div className="weather-info">
                            <div className="weather-image" style={{ backgroundImage: `url(https://openweathermap.org/img/wn/${item.icon}@4x.png)` }}></div>
@@ -56,13 +55,22 @@ function HourLayer({ data, region }) {
                         </div>
                         <L.itemList>
                            <L.items>
-                              <span style={{ fontWeight: 'bold' }}>체감온도</span> <span>{item.feels_like.toFixed(1)}°C</span>
+                              <span style={{ fontWeight: 'bold' }}>체감온도</span>{' '}
+                              <span>
+                                 {item.feels_like.toFixed(1)}°<span style={{ fontSize: '0.8em' }}>C</span>
+                              </span>
                            </L.items>
                            <L.items>
-                              <span style={{ fontWeight: 'bold' }}>최대기온</span> <span>{item.temp_max.toFixed(1)}°C</span>
+                              <span style={{ fontWeight: 'bold' }}>최대기온</span>{' '}
+                              <span>
+                                 {item.temp_max.toFixed(1)}°<span style={{ fontSize: '0.8em' }}>C</span>
+                              </span>
                            </L.items>
                            <L.items>
-                              <span style={{ fontWeight: 'bold' }}>체저기온</span> <span>{item.temp_min.toFixed(1)}°C</span>
+                              <span style={{ fontWeight: 'bold' }}>최저기온</span>{' '}
+                              <span>
+                                 {item.temp_min.toFixed(1)}°<span style={{ fontSize: '0.8em' }}>C</span>
+                              </span>
                            </L.items>
                         </L.itemList>
                      </div>

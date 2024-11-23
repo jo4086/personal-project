@@ -1,10 +1,5 @@
 import styled from 'styled-components'
 
-export const Wrap = styled.div`
-   overflow: hidden;
-   min-width: ${(props) => props.$minWdith || '1100px'};
-`
-
 export const module = styled.div`
    width: 100%;
    background-color: #c6dfdf;
@@ -65,13 +60,12 @@ export const container = styled.div`
    // padding: 0 20px 0 20px;
    padding: 0 20px;
    gap: 20px;
-
 `
 
 export const leftBox1 = styled.div`
    // border: 1px solid black;
    flex: 1;
-   padding: 10px 0px;
+   // padding: 10px 0px;
    border-radius: 0 0 0 10px;
    display: flex;
    flex-direction: column;
@@ -79,6 +73,7 @@ export const leftBox1 = styled.div`
    width: 50%;
    box-sizing: border-box;
    justify-content: center;
+   // background-color:yellow;
 `
 export const rightBox1 = styled.div`
    // border: 1px solid black;
@@ -108,10 +103,11 @@ export const items = styled.li`
    color: #555;
    padding: 5px 20px;
    border-radius: 5px;
-   font-size: 14px;
    font-size: 16px;
    margin: 5px auto;
    width: 80%;
+   line-height:20px
+   height:20px
 
    :first-child {
       margin-top: 5px;
@@ -120,3 +116,70 @@ export const items = styled.li`
       color: black;
    }
 `
+export const flexBox = styled.div`
+   display: flex;
+   flex-wrap: wrap;
+   gap: 10px;
+   justify-content: center;
+   background-color: pink;
+   margin: 0;
+`
+export const flexItem1 = styled.div.withConfig({
+   shouldForwardProp: (prop) => prop !== 'icon',
+})`
+   box-sizing: border-box;
+   width: 400px;
+   height: 250px;
+   flex: 1 1 calc(50% - 10px);
+   font-size: 16px;
+   margin: 0;
+   background-color: yellow;
+   background-size: 200px 200px;
+   background-position: left;
+   background-repeat: no-repeat;
+   background-image: url(${(props) => `https://openweathermap.org/img/wn/${props.icon}@2x.png`});
+`
+
+
+export const flexItem2 = styled.div`
+   box-sizing: border-box;
+   width: 100px;
+   height: 200px;
+   flex: 1 1 calc(50% - 10px);
+   font-size: 16px;
+   margin: 0;
+   background-color: yellow;
+   background-size: cover;
+   background-position: center;
+`
+
+export const flexItemImage = styled.div.withConfig({
+   shouldForwardProp: (prop) => prop !== 'icon',
+})`
+   box-sizing: border-box;
+   width: 400px;
+   height: 250px;
+   flex: 1 1 calc(50% - 10px);
+   font-size: 16px;
+   margin: 0;
+   background-color: yellow;
+   background-size: 200px 200px;
+   background-position: left;
+   background-repeat: no-repeat;
+   background-image: url(${(props) => `https://openweathermap.org/img/wn/${props.icon}@2x.png`});
+`
+/* export const flexItemImage = styled.div`
+   box-sizing: border-box;
+   width: 100px;
+   backgounrd-color:
+   // height: 200px;
+   flex: 1 1 calc(50% - 5px);
+   font-size: 16px;
+   margin: 0;
+   background-color: yellow;
+   background-image: url(${(props) => `https://openweathermap.org/img/wn/${props.icon}@4x.png`});
+   background-size: cover;
+   height: 50px;
+   background-position: center;
+`
+ */

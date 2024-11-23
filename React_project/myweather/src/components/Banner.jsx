@@ -2,7 +2,7 @@ import './css/Banner.css'
 
 function Banner() {
    return (
-      <div>
+     <div>
          <div className="Banner">
             <div className="Recent">
                <ul>

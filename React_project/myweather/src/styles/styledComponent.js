@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const Wrap = styled.div`
    overflow: hidden;
-   min-width: ${(props) => props.$minWdith || '1100px'};w
+   min-width: ${(props) => props.$minWdith || '1100px'};
+   position:relative
 `
 
 export const Main = styled.main`
@@ -20,7 +21,7 @@ export const LayerSection = styled.div`
    padding: 0;
 `
 export const LeftContainer = styled.div`
-   background-color: rgba(200,200,200,0.5);
+   background-color: rgba(200, 200, 200, 0.5);
    padding: 20px;
 `
 export const RightContainer = styled.div`
