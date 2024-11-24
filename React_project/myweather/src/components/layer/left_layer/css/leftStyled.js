@@ -86,10 +86,14 @@ export const rightBox1 = styled.div`
 
 export const itemList = styled.ul`
    width:100%;
+   height:100%;
+   background-color: salmon;
    list-style-type: none;
    display: flex;
    flex-direction: column;
+   justify-content:center;
    padding:0;
+   align-items : center;
 
    &:last-child {
    padding-top-30px;
@@ -106,14 +110,13 @@ export const items = styled.li`
    font-size: 16px;
    margin: 5px auto;
    width: 80%;
-   line-height:20px
-   height:20px
+   line-height: 25px;
+   height: 25px;
+   align-items: center;
 
-   :first-child {
-      margin-top: 5px;
-   }
-   & span:first-child {
+   & div:first-child {
       color: black;
+      font-weight:bold;
    }
 `
 export const flexBox = styled.div`
@@ -124,62 +127,125 @@ export const flexBox = styled.div`
    background-color: pink;
    margin: 0;
 `
-export const flexItem1 = styled.div.withConfig({
-   shouldForwardProp: (prop) => prop !== 'icon',
-})`
+export const flexItem1 = styled.div`
    box-sizing: border-box;
    width: 400px;
-   height: 250px;
+   // height: 250px;
+   padding: 10px 0;
    flex: 1 1 calc(50% - 10px);
    font-size: 16px;
    margin: 0;
    background-color: yellow;
-   background-size: 200px 200px;
-   background-position: left;
-   background-repeat: no-repeat;
-   background-image: url(${(props) => `https://openweathermap.org/img/wn/${props.icon}@2x.png`});
 `
-
 
 export const flexItem2 = styled.div`
    box-sizing: border-box;
    width: 100px;
-   height: 200px;
+   // height: 200px;
    flex: 1 1 calc(50% - 10px);
    font-size: 16px;
    margin: 0;
+   padding: 10px 0;
    background-color: yellow;
-   background-size: cover;
-   background-position: center;
 `
 
-export const flexItemImage = styled.div.withConfig({
-   shouldForwardProp: (prop) => prop !== 'icon',
-})`
+export const div = styled.div`
+   display: flex;
+   flex: 1;
    box-sizing: border-box;
-   width: 400px;
-   height: 250px;
-   flex: 1 1 calc(50% - 10px);
-   font-size: 16px;
+   height: 70%;
    margin: 0;
-   background-color: yellow;
-   background-size: 200px 200px;
-   background-position: left;
-   background-repeat: no-repeat;
-   background-image: url(${(props) => `https://openweathermap.org/img/wn/${props.icon}@2x.png`});
+   padding: 0;
+   // border: 1px solid black;
+   alignitems: 'stretch';
+   font-family: 'Jua', sans-serif;
+   font-weight:200px;
+   ${(props) =>
+      props.$variant === 'blank' &&
+      `
+      flex:0.5;
+      height:100%;
+      // width:100%;
+      // background-color: pink;
+   padding-left: 30px;
+
+      background-image: url("https://openweathermap.org/img/wn/${props.$icon}@2x.png");
+      background-size: 200px 200px;
+      background-position: top;
+      background-repeat: no-repeat;
+      `};
+   ${(props) =>
+      props.$variant === 'right' &&
+      `
+      flex:0.5;
+      height:100%;
+      flex-direction: column;
+      justify-content:end;
+      padding-bottom:20px;
+      gap:10px;
+   padding-left: 30px;
+
+    
+   `};
+   ${(props) =>
+      props.$variant === 'explain' &&
+      `
+    height:30%;
+    height:100%;
+    flex:1;
+    width:100%
+   `}
 `
-/* export const flexItemImage = styled.div`
-   box-sizing: border-box;
-   width: 100px;
-   backgounrd-color:
-   // height: 200px;
-   flex: 1 1 calc(50% - 5px);
-   font-size: 16px;
-   margin: 0;
-   background-color: yellow;
-   background-image: url(${(props) => `https://openweathermap.org/img/wn/${props.icon}@4x.png`});
-   background-size: cover;
-   height: 50px;
-   background-position: center;
+
+export const p = styled.p`
+   font-size: 1.2em;
+   font-weight: bold;
+   position: relative;
+   letter-spacing: 1.4px;
+   line-height: 35px;
+   width:100%;
+
+   ${(props) =>
+      props.$variant === 'temp main' &&
+      `
+      font-size: 3.4em;
+      font-weight:600;
+      letter-spacing:-2px;
+
+      &::after {
+      content:"C";
+      position:relative;
+      left:-10px;
+      font-size:3.5rem;
+      font-weight:normal;
+      padding-left:6px;
+
+      }
+   `}
 `
- */
+export const span = styled.span`
+   font-size: 1em;
+   letter-spacing: 1px;
+
+   ${(props) =>
+      props.$variant === 'integer' &&
+      `
+
+       }
+   `};
+
+   ${(props) =>
+      props.$variant === 'decimal' &&
+      `
+      font-size:0.45em;
+       }
+   `};
+   ${(props) =>
+      props.$variant === 'int' &&
+      `
+       }
+   `};
+`
+export const spanitem = styled.div`
+width:100%'
+`

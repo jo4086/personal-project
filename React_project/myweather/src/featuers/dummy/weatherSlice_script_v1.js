@@ -15,14 +15,18 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
    const f_data = forecastResponse.data
    const { city, list, message } = f_data
 
-   console.log(f_data)
-
    const a_data = airPollutionResponse.data
    const { aqi } = a_data.list[0].main
    const { pm2_5, pm10, co, no2, o3, so2 } = a_data.list[0].components
 
-   const scripts = getWeatherScript(weather, wind)
-   // console.log('함수', scripts)
+   // 스크립트 계산함수를 외부로 빼기 전 코드
+   // const selectedWeather = weatherGroups[weather[0].main] ?? weatherGroups['Extreme']
+   // const weatherName = selectedWeather.name
+   // const description = selectedWeather.id[weather[0].id].korean
+   // const script = { weatherName, description }
+
+   const scripts = getWeatherScript(weather)
+   console.log('함수', scripts)
 
    const filteredWeather = {
       data: w_data,
@@ -36,11 +40,11 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
       dt,
       timezone,
       rain: rain ? rain : null,
-      temp: Number(main.temp).toFixed(1),
-      min_temp: Number(main.temp_min).toFixed(1),
-      max_temp: Number(main.temp_max).toFixed(1),
-      temp_kf: Number(main.temp_kf),
-      feel_temp: Number(main.feels_like).toFixed(1),
+      temp: main.temp,
+      min_temp: main.temp_min,
+      max_temp: main.temp_max,
+      temp_kf: main.temp_kf,
+      feel_temp: main.feels_like,
       humidity: main.humidity,
       country: sys.country,
       sunrise: sys.sunrise + timezone,
@@ -52,8 +56,6 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
       wind_speed: wind.speed,
       wind_deg: wind.deg,
       scripts,
-      sunrise: sys.sunrise,
-      sunset: sys.sunset,
    }
 
    /*    const filteredForecast = {
@@ -63,16 +65,15 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
    const filteredForecast = message
       ? { message } // 예보 데이터에 message가 있으면 메시지만 반환
       : list.map((item) => {
-           const scripts = getWeatherScript(item.weather, item.wind)
-         //   console.log(item)
-           const period = item.sys.pod === 'n' ? '밤' : item.sys.pod === 'd' ? '낮' : '데이터 없음'
+           const scripts = getWeatherScript(item.weather)
+           console.log('forecast 스크립트:', scripts)
            return {
               date: new Date(item.dt * 1000).toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' }), // dt_txt를 date로 변환
               city: city.name,
-              temp: item.main.temp,
-              feel_temp: item.main.feels_like,
-              min_temp: item.main.temp_min,
-              max_temp: item.main.temp_max,
+              temperature: item.main.temp,
+              feels_like: item.main.feels_like,
+              temp_min: item.main.temp_min,
+              temp_max: item.main.temp_max,
               temp_kf: item.main.temp_kf,
               humidity: item.main.humidity,
               weather_detail: item.weather[0].description,
@@ -85,7 +86,6 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
               wind_gust: item.wind.gust,
               icon: item.weather[0].icon,
               scripts,
-              period,
            }
         })
 

@@ -50,7 +50,7 @@ function Home() {
       console.log('Coordinates changed:', coordinates)
       if (coordinates.lon && coordinates.lat) {
          // coordinates의 값이 변경되었을 때만 실행
-         console.log('useEffect3')
+         // console.log('useEffect3')
          dispatch(fetchWeathers(coordinates))
       }
    }, [coordinates])
