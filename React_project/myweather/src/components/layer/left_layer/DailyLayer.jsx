@@ -10,10 +10,41 @@ import ItemLayout from './item_layout/ItemLayout'
 import { airQualityMapper, weatherMapper } from '../../../data/mapper'
 
 function DailyLayer({ data, region }) {
+   console.log(data)
+   console.log(weatherMapper)
+   const Maptemp = weatherMapper.temp.icon
    return (
-      <FlexBox>
-         <Items />
-      </FlexBox>
+      <>
+      {Maptemp && <Maptemp />}
+         <L.container>
+            <FlexBox>
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+            </FlexBox>
+            <FlexBox>
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+            </FlexBox>
+            <FlexBox>
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+            </FlexBox>
+            <FlexBox>
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+               <Items icon value label unit extra />
+            </FlexBox>
+         </L.container>
+      </>
    )
 }
 

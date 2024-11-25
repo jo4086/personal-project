@@ -60,10 +60,10 @@ function HomeLayer({ data, region }) {
 			},
 	 ]
 
+	console.log(weather)
 	 return (
 			<>
 				 <L.title>{state}</L.title>
-				 {/* <p style={{ margin: '5px 0' }}>{weather.date} 업데이트</p> */}
 				 <L.module>
 						<L.header>
 							 <L.sub_title>
@@ -150,10 +150,8 @@ function HomeLayer({ data, region }) {
 												</L.items>
 										 </L.itemList>
 									</L.flexItem1>
-									<ItemLayout></ItemLayout>
 									<L.flexItem2></L.flexItem2>
 							 </L.flexBox>
-							 {/* <FlexBox data={flexData} /> */}
 						</L.container>
 				 </L.module>
 			</>

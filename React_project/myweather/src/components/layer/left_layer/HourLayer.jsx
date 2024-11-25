@@ -49,7 +49,7 @@ console.log(data)
                            <ul className="weather-details">
                               <li className="weather-status">{item.weather_detail}</li>
                               <li className="temperature">
-                                 {item.temperature.toFixed(1)}°<span style={{ fontSize: '0.6em' }}>C</span>
+                                 {item.temp}°<span style={{ fontSize: '0.6em' }}>C</span>
                               </li>
                            </ul>
                         </div>
@@ -57,19 +57,19 @@ console.log(data)
                            <L.items>
                               <span style={{ fontWeight: 'bold' }}>체감온도</span>{' '}
                               <span>
-                                 {item.feels_like.toFixed(1)}°<span style={{ fontSize: '0.8em' }}>C</span>
+                                 {item.feel_temp}°<span style={{ fontSize: '0.8em' }}>C</span>
                               </span>
                            </L.items>
                            <L.items>
                               <span style={{ fontWeight: 'bold' }}>최대기온</span>{' '}
                               <span>
-                                 {item.temp_max.toFixed(1)}°<span style={{ fontSize: '0.8em' }}>C</span>
+                                 {item.max_temp}°<span style={{ fontSize: '0.8em' }}>C</span>
                               </span>
                            </L.items>
                            <L.items>
                               <span style={{ fontWeight: 'bold' }}>최저기온</span>{' '}
                               <span>
-                                 {item.temp_min.toFixed(1)}°<span style={{ fontSize: '0.8em' }}>C</span>
+                                 {item.min_temp}°<span style={{ fontSize: '0.8em' }}>C</span>
                               </span>
                            </L.items>
                         </L.itemList>

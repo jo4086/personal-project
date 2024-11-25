@@ -56,10 +56,6 @@ export const fetchWeathers = createAsyncThunk('weather/fetchWeathers', async ({ 
       sunset: sys.sunset,
    }
 
-   /*    const filteredForecast = {
-      data: list, // list를 data에 그대로 할당
-   } */
-
    const filteredForecast = message
       ? { message } // 예보 데이터에 message가 있으면 메시지만 반환
       : list.map((item) => {
