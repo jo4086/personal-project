@@ -1,14 +1,69 @@
 import * as L from '../layer/left_layer/css/leftStyled'
 import '../layer/left_layer/css/HomeLayer.css'
 
-const Items = ({ label, value, icon: Icon, unit, extra = null }) => {
+const rotate = {
+   '북 (N)': 0,
+   '북동 (NE)': 45,
+   '동 (E)': 90,
+   '남동 (SE)': 135,
+   '남 (S)': 180,
+   '남서 (SW)': 225,
+   '서 (W)': 270,
+   '북서 (NW)': 315,
+}
+
+const Items = ({ label, value, icon: Icon, unit, color, extra = null }) => {
+   console.log(extra)
+
+   const direction = extra?.direction
+   const rotation = direction ? `${rotate[direction] - 90}deg` : '0deg'
+
+   return (
+      <>
+         <L.items>
+            <div className="label">
+               {Icon && <Icon color={color} />}
+               <span>{label}</span>
+            </div>
+
+            {extra && <span style={{ fontSize: '0.6em', width: '20%', textAlign: 'center' }}>{extra.direction}</span>}
+            <div
+               style={{
+                  transform: `rotate(${rotation})`,
+                  display: 'flex',
+                  alignItems: 'center',
+               }}>
+               {extra && <extra.icon />}
+            </div>
+
+            <div className="value">
+               <span style={{ letterSpacing: '2px' }}>{value}</span>
+               <span>{unit}</span>
+            </div>
+         </L.items>
+      </>
+   )
+}
+
+export default Items
+
+//    <div className="info">
+//       <span>
+//          {label}: {value} {unit}
+//       </span>
+//    </div>
+//    {extra && <div className="extra">{extra}</div>}
+// </div>
+
+/* 
+
    return (
       <div className="items">
          <div className="label">
-            {Icon && <Icon style={{ marginRight: '8px' }} />} {/* 아이콘 */}
+            {Icon && <Icon style={{ marginRight: '8px' }} />} 
             <span>{label}</span>
          </div>
-         {extra && <span style={{ fontSize: '0.85rem', marginRight: '8px' }}>{extra}</span>} {/* 추가 정보 (예: 풍향) */}
+         {extra && <span style={{ fontSize: '0.85rem', marginRight: '8px' }}>{extra}</span>} 
          <div className="value">
             <span>{value}</span>
             {unit && (
@@ -35,6 +90,4 @@ const Items = ({ label, value, icon: Icon, unit, extra = null }) => {
          </div>
       </div>
    )
-}
-
-export default Items
+*/

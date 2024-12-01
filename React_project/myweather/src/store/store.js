@@ -31,3 +31,9 @@ export const store = configureStore({
 })
 
 export const persistor = persistStore(store) // Persistor 생성
+
+
+// 개발 환경에서 상태 초기화
+// if (process.env.NODE_ENV === 'development') {
+//    persistor.purge() // Redux Persist 상태 초기화
+// }

@@ -58,43 +58,41 @@ function DailyLayer({ data, region }) {
    return (
       <>
          <L.title>{state}</L.title>
-         {weatherArray.map((item, index) => (
-            <L.module key={index}>
-               <L.header>
-                  <L.sub_title>
-                     <span style={{ fontSize: '1.0em', fontWeight: 'normal' }}>
-                        업데이트 시간 <span style={{ margin: '5px 0', fontSize: '0.8em' }}>{item.date} </span>
-                     </span>
-                  </L.sub_title>
-                  <L.details_button type="button" onClick={link} style={{ margin: '0px', padding: '5px 20px', borderRadius: '10px' }}>
-                     자세히 보기
-                  </L.details_button>
-               </L.header>
-               <L.container>
-                  <L.flexBox>
-                     <L.flexItem1 style={{ border: '1px solid black' }}>
-                        <L.div>
-                           <L.div $variant="blank" $icon></L.div>
-                           <L.div $variant="right">
-                              <L.p style={{ fontSize: '1.5em', letterSpacing: '-1px' }}>{}</L.p>
-                              <L.p $variant="temp main">
-                                 <L.span $variant="decimal">.</L.span>
-                                 <sup style={{ fontSize: '1.5rem' }}>º</sup>
-                              </L.p>
-                           </L.div>
+         <L.module>
+            <L.header>
+               <L.sub_title>
+                  <span style={{ fontSize: '1.0em', fontWeight: 'normal' }}>
+                     업데이트 시간 <span style={{ margin: '5px 0', fontSize: '0.8em' }}>{data.weather.date} </span>
+                  </span>
+               </L.sub_title>
+               <L.details_button type="button" onClick={link} style={{ margin: '0px', padding: '5px 20px', borderRadius: '10px' }}>
+                  자세히 보기
+               </L.details_button>
+            </L.header>
+            <L.container>
+               <L.flexBox>
+                  <L.flexItem1 style={{ border: '1px solid black' }}>
+                     <L.div>
+                        <L.div $variant="blank" $icon></L.div>
+                        <L.div $variant="right">
+                           <L.p style={{ fontSize: '1.5em', letterSpacing: '-1px' }}>{}</L.p>
+                           <L.p $variant="temp main">
+                              <L.span $variant="decimal">.</L.span>
+                              <sup style={{ fontSize: '1.5rem' }}>º</sup>
+                           </L.p>
                         </L.div>
-                        <L.div $variant="explain">
-                           <L.p style={{ marginLeft: '10px', borderTop: '1px solid darkgray', width: '90%' }}>{}</L.p>
-                        </L.div>
-                     </L.flexItem1>
+                     </L.div>
+                     <L.div $variant="explain">
+                        <L.p style={{ marginLeft: '10px', borderTop: '1px solid darkgray', width: '90%' }}>{}</L.p>
+                     </L.div>
+                  </L.flexItem1>
 
-                     <FlexItemReusable>{renderItems(group1)}</FlexItemReusable>
-                     <FlexItemReusable>{renderItems(group2)}</FlexItemReusable>
-                     <FlexItemReusable>{renderItems(group3)}</FlexItemReusable>
-                  </L.flexBox>
-               </L.container>
-            </L.module>
-         ))}
+                  <FlexItemReusable>{renderItems(group1)}</FlexItemReusable>
+                  <FlexItemReusable>{renderItems(group2)}</FlexItemReusable>
+                  <FlexItemReusable>{renderItems(group3)}</FlexItemReusable>
+               </L.flexBox>
+            </L.container>
+         </L.module>
       </>
    )
 }

@@ -10,7 +10,6 @@ import Layout from './Layout'
 
 function Daily({ data, region }) {
    const { weathers } = useSelector((state) => state.weathers)
-   console.log(weathers)
 
    return (
       <Layout>

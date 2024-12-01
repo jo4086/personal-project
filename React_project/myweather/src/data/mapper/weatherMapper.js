@@ -105,7 +105,7 @@ const weatherMapper = {
       color: '#696969', // 회색
       unit: '',
       get icon() {
-         return weatherIcon['미세먼지'] 
+         return weatherIcon['미세먼지']
       },
    },
    pm10: {
@@ -116,8 +116,23 @@ const weatherMapper = {
          return weatherIcon['미세먼지']
       },
    },
+   rain: {
+      label: '비',
+      color: '#00BFFF', // 회색
+      unit: 'mm',
+      get icon() {
+         return weatherIcon[this.label]
+      },
+   },
+   snow: {
+      label: '눈',
+      color: '#00BFFF', // 회색
+      unit: '',
+      get icon() {
+         return weatherIcon[this.label]
+      },
+   },
 }
-// PiMoonStarsFill
 export default weatherMapper
 /* 
 clouds: 93
