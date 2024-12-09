@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const BASE_URL = 'https://api.openweathermap.org'
-const AUTH_KEY = 'f24ef11ff3ac3759827b92ca024bf829'
+const OPEN_WEATHER_KEY = process.env.REACT_APP_OPEN_WEATHER_KEY
 const data = '/data/2.5'
 
 const openWeather = axios.create({
@@ -16,7 +16,7 @@ const fetchFromApi = async (url, params = {}) => {
       const response = await openWeather.get(url, {
          params: {
             ...params,
-            appid: AUTH_KEY,
+            appid: OPEN_WEATHER_KEY,
          },
       })
       return response
@@ -82,7 +82,7 @@ export const getAirForecast = (lon, lat) => {
 //       const response = await openWeather.get(url, {
 //          params: {
 //             ...params,
-//             appid: AUTH_KEY,
+//             appid: OPEN_WEATHER_KEY,
 //          },
 //       })
 //       return response
