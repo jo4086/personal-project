@@ -1,17 +1,18 @@
 # Git 코드블록 규칙 검사
 
 ```javascript
-// hello
+// javascript
 const message = "Hello, GitHub";
 console.log(message)
 ```
 
 ```java
-// hello
+// java
 const message = "Hello, GitHub";
 console.log(message)
 ```
 ```html
+<!-- html -->
 <!DOCTYPE html>
 <html>
     <head>
@@ -23,6 +24,7 @@ console.log(message)
 </html>
 ```
 ```css
+/* css */
 body {
     font-family: Arial, sans-serif;
     color: #333;
@@ -31,12 +33,13 @@ body {
 ```
 ```json
 {
+    "block": "json"
     "name": "GitHub Highlighting",
     "version": "1.0.0",
 }
 ```
 ```sql
--- Example SQL Code
+-- Example SQL
 SELECT * FROM users WHERE id = 1;
 INSERT INTO users (name, age) VALUES ('John', 25);
 ```
