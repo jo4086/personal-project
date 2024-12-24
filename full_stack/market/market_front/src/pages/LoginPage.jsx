@@ -1,9 +1,10 @@
-import { Container } from '../styles/myUi'
+import Login from '../components/auth/Login'
+import { Container, Section, InputField } from '../styles/myUi'
 
 const LoginPage = () => {
     return (
-        <Container>
-            <h3>로그인 페이지입니다.</h3>
+        <Container margin="30px auto" maxWidth="1080px" backgroundColor="black">
+                <Login />
         </Container>
     )
 }

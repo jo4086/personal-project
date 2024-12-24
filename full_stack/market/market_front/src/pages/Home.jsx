@@ -17,7 +17,9 @@ const Home = () => {
                 <Section backgroundColor="lightgray" flexGrow="1" width="33.33%">
                     hi
                 </Section>
-                <Section flexGrow="2" width="66.66%">hi</Section>
+                <Section flexGrow="2" width="66.66%">
+                    hi
+                </Section>
             </Container>
         </>
     )

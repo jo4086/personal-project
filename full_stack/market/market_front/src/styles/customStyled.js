@@ -169,12 +169,49 @@ export const Container = styled.div`
     // margin: ${(props) => props.$margin || '0 auto'};
 `
 
-/* AAAAAAAAAAAAAAAAAAAAAA${(props) => props.$textAlign && `text-align: ${props.$textAlign};`} */
-/* padding: ${(props) => props.$padding || '0px'}; */
+export const InputContainer = styled.div`
+    box-sizing: border-box;
+    margin: ${(props) => props.$margin || '0 auto'};
+    // margin: ${(props) => calculateMargin(props)};
+    padding: ${(props) => calculatePadding(props)};
+    width: ${(props) => props.$width || '100%'};
+    flex-grow: ${(props) => props.$flexGrow || '1'};
+    display: ${(props) => props.$display || 'block'};
+    background-color: ${(props) => props.$backgroundColor || 'transparent'};
+    border: ${(props) => props.$border || 'none'};
+    border-radius: ${(props) => props.$borderRadius || '4px'};
+    box-shadow: ${(props) => props.$boxShadow || 'none'};
 
-/* ${(props) => props.$justifyContent && `justify-content: ${props.$justifyContent};`} */
-/* ${(props) => props.$display && `display: ${props.$display};`} */
-/* ${(props) => props.$alignItems && `align-items: ${props.$alignItems};`} */
-/* ${(props) => props.$padding && `padding: ${props.$padding};`} */
-/* ${(props) => props.$margin && `margin: ${props.$margin};`} */
-/* ${(props) => props.$width && `width: ${props.$width};`} */
+    label {
+        display: block;
+        margin-bottom: ${(props) => props.$labelMarginBottom || '8px'};
+        font-size: ${(props) => props.$labelFontSize || '14px'};
+        color: ${(props) => props.$labelColor || '#555'};
+    }
+
+    input,
+    textarea {
+        width: ${(props) => (props.$fullWidth ? '100%' : 'auto')};
+        padding: ${(props) => calculatePadding(props)};
+        border: ${(props) => props.$inputBorder || '1px solid #ccc'};
+        border-radius: ${(props) => props.$inputBorderRadius || '4px'};
+        font-size: ${(props) => props.$fontSize || '16px'};
+        outline: none;
+        box-sizing: border-box;
+        background-color: ${(props) => props.$inputBackgroundColor || '#fff'};
+
+        &:focus {
+            border-color: ${(props) => props.$focusBorderColor || '#4caf50'};
+            box-shadow: ${(props) => props.$focusBoxShadow || '0 0 5px rgba(0, 0, 0, 0.1)'};
+        }
+
+        &:hover {
+            background-color: ${(props) => props.$hoverBackgroundColor || '#f9f9f9'};
+        }
+    }
+
+    textarea {
+        resize: ${(props) => (props.$resize ? props.$resize : 'none')};
+        min-height: ${(props) => (props.$rows ? `${props.$rows * 24}px` : '80px')};
+    }
+`
