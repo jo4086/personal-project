@@ -143,7 +143,7 @@ export const Li = styled.li`
 export const Container = styled.div`
     box-sizing: border-box;
     display: ${(props) => props.$display || 'flex'};
-    width: ${(props) => props.$width || '1080px'};
+    width: ${(props) => props.$width || 'auto'};
     height: ${(props) => props.$height || 'auto'};
     margin: ${(props) => props.$margin || '0 auto'};
     max-width: ${(props) => props.$maxWidth || 'none'};
