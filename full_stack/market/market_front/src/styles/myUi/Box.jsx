@@ -4,7 +4,7 @@ import * as a from './styles/customStyled'
 const Box = ({ display = 'flex', children, style, ...props }) => {
     const styledProps = propsFilter(props, display)
 
-    console.log(styledProps)
+    // console.log(styledProps)
     return (
         <>
             <a.Box $display={display} style={style} {...styledProps}>

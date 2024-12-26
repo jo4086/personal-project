@@ -1,10 +1,11 @@
-import { Container } from '../styles/myUi'
+import { Container, Box } from '../styles/myUi'
+import { theme } from '../styles/myUi/common'
 
-const LoginPage = () => {
-    return (
-        <Container display="flex" backgroundColor="yellow" margin="30px auto">
-            <h3>로그인 페이지입니다.</h3>
-        </Container>
-    )
+const MyPage = () => {
+   return (
+      <Container {...theme}>
+         <h2>My page입니다.</h2>
+      </Container>
+   )
 }
-export default LoginPage
+export default MyPage

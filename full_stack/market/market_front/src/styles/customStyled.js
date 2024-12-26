@@ -49,6 +49,7 @@ export const Box = styled.div`
 export const Nav = styled.nav`
     position: fixed;
     box-sizing: border-box;
+    z-index:9999;
     width: 100%;
     height: ${(props) => props.$height || 'auto'};
     justify-content: space-between;

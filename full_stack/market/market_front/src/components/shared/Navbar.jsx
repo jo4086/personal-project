@@ -15,7 +15,7 @@ const Navbar = () => {
             </Link>
             <ul style={{ display: 'flex', gap: '5px', alignItems: 'center', height: '100%' }}>
                 <Li>
-                    <Link to="/my_page" style={{ textDecoration: 'none' }}>
+                    <Link to="/mypage" style={{ textDecoration: 'none', caretColor:"transparent",cursor:'pointer' }}>
                         <Button boxShadow paddingVertical="2px">
                             My page
                         </Button>
