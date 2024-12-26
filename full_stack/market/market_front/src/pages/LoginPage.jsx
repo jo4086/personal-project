@@ -1,10 +1,13 @@
 import Login from '../components/auth/Login'
-import { Container, Section, InputField } from '../styles/myUi'
+import { Container, Box } from '../styles/myUi'
 
 const LoginPage = () => {
     return (
-        <Container margin="30px auto" maxWidth="1080px" backgroundColor="black">
-                <Login />
+        <Container flexDirection='column' margin="60px auto" maxWidth="1080px" backgroundColor="rgba(00,00,0, 0.05)" paddingBottom="60px" >
+            <Box margin="50px">
+                <h1>Login</h1>
+            </Box>
+            <Login />
         </Container>
     )
 }

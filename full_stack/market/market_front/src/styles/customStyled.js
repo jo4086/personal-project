@@ -169,6 +169,41 @@ export const Container = styled.div`
     // margin: ${(props) => props.$margin || '0 auto'};
 `
 
+export const TextField = styled.div`
+    box-sizing: border-box;
+    background-color: orange;
+
+    input,
+    textarea {
+        outline: ${(props) => props.$outline || 'none'};
+        display: ${(props) => props.$display || 'block'};
+        padding: ${(props) => calculatePadding(props)};
+        margin: ${(props) => `${calculateMargin(props)}`};
+        width: ${(props) => props.$width || 'auto'};
+        height: ${(props) => props.$height || 'auto'};
+        ${(props) => props.$backgroundColor && `background-color: ${props.$backgroundColor};`}
+        ${(props) => props.$border && `border: ${props.$border};`}
+        ${(props) => props.$textAlign && `text-align: ${props.$textAlign};`}
+        ${(props) => props.$borderRadius && `border-radius: ${props.$borderRadius};`}
+        ${(props) => props.$boxShadow && `box-shadow: ${props.$boxShadow};`}
+        ${(props) => props.$lineHeight && `line-height: ${props.$lineHeight};`}
+        ${(props) => props.$letterSpacing && `letter-spacing: ${props.$letterSpacing};`}
+        ${(props) => props.$color && `color: ${props.$color};`}
+        ${(props) => props.$fontSize && `font-size: ${props.$fontSize};`}
+        ${(props) => props.$fontWeight && `font-weight: ${props.$fontWeight};`}
+
+    
+        &:focus {
+            // border-color: ${(props) => props.$focusBorderColor || '#4caf50'};
+            box-shadow: ${(props) => props.$focusBoxShadow || '0 0 1px rgba(0, 0, 0, 0.5)'};
+        }
+    }
+
+    textarea {
+        resize: ${(props) => (props.$resize ? props.$resize : 'none')};
+    }
+`
+
 export const InputContainer = styled.div`
     box-sizing: border-box;
     margin: ${(props) => props.$margin || '0 auto'};

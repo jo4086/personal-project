@@ -4,7 +4,9 @@ export const flexPropsKeys = [
     'justifyContent',
     'alignItems',
     'gap',
-    'flexGrow'
+    'alignSelf',
+    'justifySelf',
+    // 'flexGrow'
 ]
 // ;('')
 // 그리드 박스 관련 속성
@@ -25,6 +27,7 @@ export const textPropsKeys = [
     'color',
     'fontSize',
     'fontWeight',
+    'textDecoration',
 ]
 /*
 
@@ -62,7 +65,7 @@ export const commonPropsKeys = [
     'outline',
 ]
 
-const filterPropsByLayout = (props, display, text = false) => {
+const propsFilter = (props, display, text = false) => {
     // 레이아웃별 유효한 키
     const layoutKeys = {
         flex: [...flexPropsKeys, ...commonPropsKeys],
@@ -70,10 +73,10 @@ const filterPropsByLayout = (props, display, text = false) => {
         // text: [...textPropsKeys, ...commonPropsKeys],
     }
 
-const validKeys = [
-    ...(layoutKeys[display] || commonPropsKeys), // display에 해당하는 유효한 키
-    ...(text ? textPropsKeys : []), // text가 true일 때만 textPropsKeys 추가
-]
+    const validKeys = [
+        ...(layoutKeys[display] || commonPropsKeys), // display에 해당하는 유효한 키
+        ...(text ? textPropsKeys : []), // text가 true일 때만 textPropsKeys 추가
+    ]
 
     // 유효한 키만 필터링
     return Object.keys(props).reduce((acc, key) => {
@@ -84,7 +87,7 @@ const validKeys = [
     }, {})
 }
 
-export default filterPropsByLayout
+export default propsFilter
 
 // const validKeys = layoutKeys[display] || commonPropsKeys // layout이 없으면 공통 속성만
 
