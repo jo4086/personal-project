@@ -35,4 +35,7 @@ module.exports = class Post extends Sequelize.Model {
            },
         )
     }
+    static associate(db) {
+        db.Post
+    }
 }
