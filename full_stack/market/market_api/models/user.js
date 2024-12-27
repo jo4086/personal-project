@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize')
 
-module.exports = class Member extends Sequelize.model {
+module.exports = class User extends Sequelize.Model {
     static init(sequelize) {
         return super.init(
             {
@@ -8,10 +8,10 @@ module.exports = class Member extends Sequelize.model {
                     type: Sequelize.STRING(15),
                     allowNull: false,
                 },
-                isbusiness: {
+                isBusiness: {
                     type: Sequelize.BOOLEAN,
                     allowNull: false,
-                    defaultvalue: false,
+                    defaultValue: false,
                 },
                 userId: {
                     type: Sequelize.STRING(15),
@@ -26,7 +26,6 @@ module.exports = class Member extends Sequelize.model {
                 nick: {
                     type: Sequelize.STRING(30),
                     allowNull: false,
-                    defaultValue: null,
                 },
                 phone: {
                     type: Sequelize.STRING(15),
@@ -37,12 +36,12 @@ module.exports = class Member extends Sequelize.model {
                     type: Sequelize.STRING(255),
                     allowNull: false,
                 },
-                depositaccount: {
+                withdrawal: {
                     type: Sequelize.STRING(25),
                     allowNull: true,
                     unique: true,
                 },
-                refundaccount: {
+                refund: {
                     type: Sequelize.STRING(25),
                     allowNull: true,
                     unique: true,
@@ -52,24 +51,32 @@ module.exports = class Member extends Sequelize.model {
                 sequelize,
                 timestamps: true,
                 underscored: false,
-                modelname: 'Member',
-                tablename: 'members',
+                modelname: 'User',
+                tablename: 'users',
                 paranoid: true,
                 charset: 'utf8mb4',
-                collate: 'utf8mb4_general_ci'
-            }
+                collate: 'utf8mb4_general_ci',
+            },
         )
     }
     static associate(db) {
-        db.Member
+        db.User.hasMany(db.Address, {
+            foreignKey: 'userId',
+            sourceKey: 'id',
+        })
+        db.User.hasMany(db.Post, {
+            foreignKey: 'userId',
+            sourceKey: 'id'
+        })
     }
 
     static hooks() {
         // beforeCreate 훅 설정
-        this.addHook('beforeCreate', (member) => {
-            if (!member.nick) {
-                member.nick = member.userId; // nick이 없으면 userId를 기본값으로 설정
+        this.addHook('beforeCreate', (user) => {
+            if (!user.nick) {
+                user.nick = user.userId; // nick이 없으면 userId를 기본값으로 설정
             }
         });
     }
 }
+

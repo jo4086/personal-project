@@ -9,28 +9,48 @@ const passport = require('passport')
 const app = express()
 require('dotenv').config()
 
+// 라우터 & 기타 모듈 호출
+const { sequelize } = require('./models')
+const passportConfig = require('./passport')
+
+passportConfig()
 app.set('port', process.env.PORT || 8010)
+
+sequelize
+    .sync({ force: false })
+    .then(() => {
+        console.log('DB-&-시퀄라이저모델 연결 성공')
+    })
+    .catch((err) => {
+        console.error(err)
+    })
 
 app.use(
     cors({
         origin: 'http://localhost:3010',
         credentials: true,
-    })
+    }),
 )
 
 app.use(morgan('dev'))
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
-app.use(session({
-    resave: false,
-    saveUninitialized: true,
-    secret: process.env.COOKIE_SECRET,
-    cookie: {
-        httpOnly: true,
-        secure: false,
-    }
-}))
+app.use(
+    session({
+        resave: false,
+        saveUninitialized: true,
+        secret: process.env.COOKIE_SECRET,
+        cookie: {
+            httpOnly: true,
+            secure: false,
+        },
+    }),
+)
+
+// Passport 초기화, 세션연동
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use((req, res, next) => {
     const err = new Error(`${method} ${req.url} 라우터경로가 없습니다.`)
@@ -39,7 +59,7 @@ app.use((req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
-const statusCode = err.status || 500 // 에러코드가 있으면 사용 없으면 500
+    const statusCode = err.status || 500 // 에러코드가 있으면 사용 없으면 500
     const errorMessage = err.message || '서버 내부 오류' // 에러 메세지 있으면 사용, 없으면 후자 출력
 
     console.log(err)
@@ -48,11 +68,10 @@ const statusCode = err.status || 500 // 에러코드가 있으면 사용 없으�
         success: false,
         message: errorMessage,
         error: err,
-    }) 
+    })
 })
 
 app.options('*', cors()) // 모든 경로에 대한 options 요청 허용,
 app.listen(app.get('port'), () => {
     console.log(app.get('port'), '번 포트에서 대기중')
 })
-

@@ -12,7 +12,6 @@ const Login = () => {
    return (
       <>
          <Box {...Box1Props}>
-            {/* <Section width="40%" backgroundColor="hotpink" flexDirection="column"> */}
             <form onSubmit={handleSubmit}>
                <TextField
                   label="이메일"
@@ -81,7 +80,7 @@ const Login = () => {
                         border="none"
                         tabindex="-1"
                         caretColor="transparent"
-                        pointerEvents="none"
+                        // pointerEvents="none"
                         boxShadow="0px 0px 0px 0.5px rgba(0,0,0,0.5)"
                         width="auto"
                         hoverBackgroundColor="rgba(0,0,0,0.05)">
@@ -107,12 +106,12 @@ const textFieldDefaultProps = {
    borderRadius: '5px',
    border: 'none',
    boxShadow: '0px 0px 1px 1px rgba(0,0,0,0.5)',
-   tabindex: '-1',
+   
+   // tabindex: '-1',
    //    caretColor: 'transparent',
 }
 const Box1Props = {
    width: '40%',
-   // border: '1px solid black',
    flexDirection: 'column',
 }
 
