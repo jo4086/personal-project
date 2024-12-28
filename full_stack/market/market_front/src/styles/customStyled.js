@@ -47,25 +47,22 @@ export const Box = styled.div`
 `
 
 export const Nav = styled.nav`
-    position: fixed;
-    box-sizing: border-box;
-    z-index: 9999;
-    width: 100%;
-    height: ${(props) => props.$height || 'auto'};
-    justify-content: space-between;
-    max-width: 1080px;
-    // left: -83.665px;
-    // right: -83.665px;
-    // left: calc((100% - 1080px) / 2);
-    // right: calc((100% - 1080px) / 2);
-    left: max(0px, calc((100% - 1080px) / 2));
-    right: max(0px, calc((100% - 1080px) / 2));
-    padding: 0 10px 0 0;
-    top: 0px;
-    border: 1px solid black;
-    display: flex;
-    background-color: #bdd;
-    align-items: center;
+   position: fixed;
+   box-sizing: border-box;
+   z-index: 9999;
+   width: 100%;
+   height: ${(props) => props.$height || 'auto'};
+   justify-content: space-between;
+   max-width: 1080px;
+   left: max(0px, calc((100% - 1080px) / 2));
+   right: max(0px, calc((100% - 1080px) / 2));
+   padding: 0 10px 0 0;
+   top: 0px;
+   // border: 1px solid black;
+   display: flex;
+   // background-color: #bdd;
+   align-items: center;
+   user-select: none;
 `
 
 export const Button = styled.button`

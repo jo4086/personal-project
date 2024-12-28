@@ -1,13 +1,12 @@
 import { propsFilter } from './util'
 import * as a from './styles/customStyled'
 
-const Text = ({ type = 'p', fontSize = null, display = 'block', children, style, ...props }) => {
+const Text = ({ type = 'p', fontSize, display = 'block', children, style, ...props }) => {
    if (!ALLOWED_TAGS.includes(type)) {
       throw new Error(`Invalid type "${type}" provided to <Text />. Supported types are: [ ${ALLOWED_TAGS.map((tag) => `"${tag}"`).join(', ')} ]`)
    }
-   //    if (Object.keys(props).length > 0) {
-   if (fontSize) {
-      const chooseFontSize = fontSize.replace('px', '') || '12'
+   if (Object.keys(props).length > 0) {
+      const chooseFontSize = (fontSize ?? props.fontSize).replace('px', '')
 
       const reSizeFontSize = `${chooseFontSize * (DEFAULT_FONT_SIZES[type] || 1)}px`
       props.fontSize = reSizeFontSize
@@ -20,9 +19,6 @@ const Text = ({ type = 'p', fontSize = null, display = 'block', children, style,
          </a.Text>
       )
    }
-   //    }
-
-   const styledProps = propsFilter(props, display, true)
 
    return (
       <a.Text as={type} $display={display} style={style} {...styledProps}>

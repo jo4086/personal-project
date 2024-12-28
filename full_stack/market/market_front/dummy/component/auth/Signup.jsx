@@ -1,10 +1,8 @@
 import { Box, Text, TextField, HyperLink, Btn } from '../../styles/myUi'
-// import { Box1Props } from '../../styles/myUi/common'
+import { Box1Props } from '../../styles/myUi/common'
 import { useCallback, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { signCheckThunk } from '../../features/slice/blurSlice'
-import { registerUserThunk } from '../../features/slice'
-import { validateField } from '../../utils'
 
 const Signup = () => {
     const [name, setName] = useState('')
@@ -21,31 +19,38 @@ const Signup = () => {
 
     const dispatch = useDispatch()
     const { status, messages } = useSelector((state) => state.blur)
+    const [previousValues, setPreviousValues] = useState({})
+    const [warnings, setWarnings] = useState({})
 
-    const handleBlur = async (type, data, confirmValue = '') => {
+    const handleBlur = async (type, data) => {
         try {
-            if (!data) return
-
-            if (type === 'confirmPassword') {
-                const errorMessage = validateField(type, data, confirmValue)
-                if (errorMessage) {
-                    console.error(errorMessage) // 프론트엔드 에러 처리
-                    alert(errorMessage)
-                }
-                return // 백엔드 요청 없이 종료
+            if (!setWarnings[type]) {
+                setWarnings((prev) => ({
+                    ...prev,
+                    [type]: !data, // 값이 비어 있으면 true로 설정
+                }))
             }
 
-            const errorMessage = validateField(type, data)
-            if (errorMessage) {
-                alert(errorMessage)
-                console.error(errorMessage) // 콘솔로 에러 표시
+            if (!data) return
+
+            if (previousValues[type] === data && !previousValues[type]) {
+                console.log(`[INFO] ${type} 값이 변경되지 않아 API 요청 생략`)
                 return
             }
 
+            console.log({ type, data })
             await dispatch(signCheckThunk({ type, data })).unwrap()
-        } catch (err) {
-            console.error(err)
-        }
+
+            setPreviousValues((prev) => ({
+                ...prev,
+                [type]: data,
+            }))
+
+            setWarnings((prev) => ({
+                ...prev,
+                [type]: !data, // 값이 비어 있으면 true로 설정
+            }))
+        } catch (err) {}
     }
 
     useEffect(() => {
@@ -56,23 +61,9 @@ const Signup = () => {
         }
     }, [userId])
 
-    const handleSubmit = useCallback(
-        (e) => {
-            e.preventDefault()
-
-            const isBusiness = false
-
-            const sanitizedNick = nick === '' ? userId : nick
-
-            const sanitizedWithdrawal = withdrawal === '' ? null : withdrawal
-            
-            const sanitizedRefund = refund === '' ? null : refund
-
-            const userData = { isBusiness, name, userId, email, nick: sanitizedNick, phone, password, withdrawal: sanitizedWithdrawal, refund: sanitizedRefund }
-            dispatch(registerUserThunk(userData))
-        },
-        [dispatch, name, userId, email, nick, phone, password, withdrawal, refund],
-    )
+    const handleSubmit = useCallback((e) => {
+        e.preventDefault()
+    })
     return (
         <>
             <Box {...BoxStyle} gap="14px">
@@ -97,7 +88,7 @@ const Signup = () => {
                                 }}
                                 {...textFieldDefaultProps}
                             />
-                            {status.phone === 'success' && phone ? <Text height="14px" lineHeight="10px" color="	#00B6FF" fontSize="10px"></Text> : <Text height="0px"></Text>}
+                            {status.phone === 'success' ? <Text height="14px" lineHeight="10px" color="	#00B6FF" fontSize="10px"></Text> : <Text height="0px"></Text>}
                         </Box>
                         <Box width="100%" flexDirection="column">
                             <TextField
@@ -117,8 +108,8 @@ const Signup = () => {
                                 onBlur={(e) => handleBlur('phone', e.target.value)}
                                 {...textFieldDefaultProps}
                             />
-                            {status.phone === 'success' && phone ? (
-                                <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
+                            {status.phone === 'success' ? (
+                                <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="	#00B6FF">
                                     {messages.phone}
                                 </Text>
                             ) : (
@@ -141,10 +132,18 @@ const Signup = () => {
                             }}
                             onBlur={(e) => handleBlur('email', e.target.value)}
                             {...textFieldDefaultProps}
-                        />
-                        {status.email === 'success' && email ? (
-                            <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
+                        />{' '}
+                        {warnings.email ? (
+                            <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="	#DB3245">
+                                값을 입력하세요
+                            </Text>
+                        ) : status.email === 'success' ? (
+                            <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="	#00B6FF">
                                 {messages.email}
+                            </Text>
+                        ) : !email && status.email === 'success' ? (
+                            <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="	#DB3245">
+                                값을 입력하세요
                             </Text>
                         ) : (
                             <Text height="0px"></Text>
@@ -166,8 +165,8 @@ const Signup = () => {
                             onBlur={(e) => handleBlur('address', e.target.value)}
                             {...textFieldDefaultProps}
                         />{' '}
-                        {status.address === 'success' && address ? (
-                            <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
+                        {status.address === 'success' ? (
+                            <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="	#00B6FF">
                                 {messages.address}
                             </Text>
                         ) : (
@@ -176,53 +175,33 @@ const Signup = () => {
                     </Box>
                     <Text {...text}>아이디 생성</Text>
                     <Box gap="10px" width="100%" display="flex">
-                        <Box width="100%" flexDirection="column">
-                            <TextField
-                                label="아이디 (12자)"
-                                type="text"
-                                name="userId"
-                                value={userId}
-                                autoComplete="username"
-                                placeholder="* 필수"
-                                phrStyles={phrStyles}
-                                className="Input"
-                                onChange={(e) => {
-                                    setUserId(e.target.value)
-                                }}
-                                onBlur={(e) => handleBlur('userId', e.target.value)}
-                                {...textFieldDefaultProps}
-                            />{' '}
-                            {status.userId === 'success' && userId ? (
-                                <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
-                                    {messages.userId}
-                                </Text>
-                            ) : (
-                                <Text height="0px"></Text>
-                            )}
-                        </Box>
-                        <Box width="100%" flexDirection="column">
-                            <TextField
-                                label="닉네임"
-                                type="text"
-                                name="nick"
-                                value={nick}
-                                autoComplete="off"
-                                placeholder={nickPlaceholder}
-                                phrStyles={phrStyles}
-                                onChange={(e) => {
-                                    setNick(e.target.value)
-                                }}
-                                onBlur={(e) => handleBlur('nick', e.target.value)}
-                                {...textFieldDefaultProps}
-                            />{' '}
-                            {status.nick === 'success' && nick ? (
-                                <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
-                                    {messages.nick}
-                                </Text>
-                            ) : (
-                                <Text height="0px"></Text>
-                            )}
-                        </Box>
+                        <TextField
+                            label="아이디 (12자)"
+                            type="text"
+                            name="userId"
+                            value={userId}
+                            autoComplete="username"
+                            placeholder="* 필수"
+                            phrStyles={phrStyles}
+                            className="Input"
+                            onChange={(e) => {
+                                setUserId(e.target.value)
+                            }}
+                            {...textFieldDefaultProps}
+                        />
+                        <TextField
+                            label="닉네임"
+                            type="text"
+                            name="nick"
+                            value={nick}
+                            autoComplete="off"
+                            placeholder={nickPlaceholder}
+                            phrStyles={phrStyles}
+                            onChange={(e) => {
+                                setNick(e.target.value)
+                            }}
+                            {...textFieldDefaultProps}
+                        />
                     </Box>
                     <Box gap="10px" width="100%" display="flex">
                         <TextField
@@ -247,59 +226,38 @@ const Signup = () => {
                             phrStyles={phrStyles}
                             className="Input"
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            onBlur={(e) => handleBlur('confirmPassword', e.target.value, password)}
                             {...textFieldDefaultProps}
                         />
                     </Box>
                     <Text {...text}>출금/환불 계좌</Text>
-                    <Box width="100%" flexDirection="column">
-                        <TextField
-                            label="출금계좌"
-                            type="text"
-                            name="withdrawal"
-                            value={withdrawal}
-                            autoComplete="off"
-                            placeholder="* 추후 입력가능"
-                            phrStyles={phrStyles}
-                            className="Input"
-                            onChange={(e) => {
-                                setWithdrawal(e.target.value)
-                            }}
-                            onBlur={(e) => handleBlur('withdrawal', e.target.value)}
-                            {...textFieldDefaultProps}
-                        />{' '}
-                        {status.withdrawal === 'success' && withdrawal ? (
-                            <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
-                                {messages.withdrawal}
-                            </Text>
-                        ) : (
-                            <Text height="0px"></Text>
-                        )}
-                    </Box>
-                    <Box width="100%" flexDirection="column">
-                        <TextField
-                            label="환불계좌"
-                            type="text"
-                            name="refund"
-                            value={refund}
-                            autoComplete="off"
-                            placeholder="* 추후 입력가능"
-                            phrStyles={phrStyles}
-                            className="Input"
-                            onChange={(e) => {
-                                setRefund(e.target.value)
-                            }}
-                            onBlur={(e) => handleBlur('refund', e.target.value)}
-                            {...textFieldDefaultProps}
-                        />{' '}
-                        {status.refund === 'success' && refund ? (
-                            <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
-                                {messages.refund}
-                            </Text>
-                        ) : (
-                            <Text height="0px"></Text>
-                        )}
-                    </Box>
+                    <TextField
+                        label="출금계좌"
+                        type="text"
+                        name="withdrawal"
+                        value={withdrawal}
+                        autoComplete="off"
+                        placeholder="* 추후 입력가능"
+                        phrStyles={phrStyles}
+                        className="Input"
+                        onChange={(e) => {
+                            setWithdrawal(e.target.value)
+                        }}
+                        {...textFieldDefaultProps}
+                    />
+                    <TextField
+                        label="환불계좌"
+                        type="text"
+                        name="refund"
+                        value={refund}
+                        autoComplete="off"
+                        placeholder="* 추후 입력가능"
+                        phrStyles={phrStyles}
+                        className="Input"
+                        onChange={(e) => {
+                            setRefund(e.target.value)
+                        }}
+                        {...textFieldDefaultProps}
+                    />
                     <Box display="flex" marginVertical="20px" padding="10px 0" width="100%" flexDirection="column" caretColor="transparent">
                         <Btn
                             type="submit" // 서브밋

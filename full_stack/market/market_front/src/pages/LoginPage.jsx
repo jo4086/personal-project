@@ -1,12 +1,12 @@
 import Login from '../components/auth/Login'
-import { Container, Box } from '../styles/myUi'
-import { SignUi } from '../styles/myUi/common'
+import { Container, Box, Text } from '../styles/myUi'
+import { SignUi,Title } from '../styles/myUi/common'
 
 const LoginPage = () => {
     return (
         <Container {...SignUi}>
             <Box margin="50px">
-                <h1>Login</h1>
+                <Text {...Title}>Login</Text>
             </Box>
             <Login />
         </Container>

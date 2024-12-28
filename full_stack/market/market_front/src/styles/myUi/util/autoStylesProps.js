@@ -1,6 +1,6 @@
 const autoStylesProps = (props) => {
-    // 1. 상태별 프롭스와 일반 프롭스 분리
-    // console.log(props)
+   // 1. 상태별 프롭스와 일반 프롭스 분리
+   // console.log(props)
    const statePrefixes = ['hover', 'active', 'visited']
    const baseStyles = {}
    const stateStyles = {}
@@ -41,12 +41,12 @@ const autoStylesProps = (props) => {
          const styleBlock = Object.entries(styles)
             .map(([key, value]) => `${key}: ${value};`)
             .join(' ')
-         console.log(`&:${state} { ${styleBlock} }`)
+         // console.log(`&:${state} { ${styleBlock} }`)
          return `&:${state} { ${styleBlock} }`
       })
       .join('\n')
-
-//    console.log('State Styles:', stateStyles)
+   // console.log(baseCSS)
+   //    console.log('State Styles:', stateStyles)
    // 4. 최종 CSS 반환
    return `${baseCSS}\n${stateCSS}`
 }

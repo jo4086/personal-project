@@ -39,11 +39,13 @@ module.exports = class User extends Sequelize.Model {
                 withdrawal: {
                     type: Sequelize.STRING(25),
                     allowNull: true,
+                    defaultValue: null,
                     unique: true,
                 },
                 refund: {
                     type: Sequelize.STRING(25),
                     allowNull: true,
+                    defaultValue: null,
                     unique: true,
                 },
             },

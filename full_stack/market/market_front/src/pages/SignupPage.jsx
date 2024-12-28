@@ -5,7 +5,7 @@ import Signup from '../components/auth/Signup'
 const SignupPage = () => {
     return (
         <Container {...SignUi}>
-            <h2>회원가입 페이지입니다.</h2>
+            <h2>회원가입</h2>
             <Signup />
         </Container>
     )

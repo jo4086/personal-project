@@ -97,18 +97,20 @@ const Login = () => {
 export default Login
 
 const textFieldDefaultProps = {
-   marginVertical: '5px',
-   paddingVertical: '2px',
-   paddingSide: '10px',
-   flexGrow: 1,
-   height: '50px',
-   fontSize: '16px',
-   borderRadius: '5px',
-   border: 'none',
-   boxShadow: '0px 0px 1px 1px rgba(0,0,0,0.5)',
-   
-   // tabindex: '-1',
-   //    caretColor: 'transparent',
+    marginVertical: '5px',
+    paddingVertical: '2px',
+    paddingSide: '10px',
+    paddingTop:'5px',
+    flexGrow: 1,
+    height: '50px',
+    fontSize: '16px',
+    borderRadius: '5px',
+    border: 'none',
+    boxShadow: '0px 0px 1px 1px rgba(0,0,0,0.5)',
+   //  fontSize: '30px',
+
+    // tabindex: '-1',
+    //    caretColor: 'transparent',
 }
 const Box1Props = {
    width: '40%',

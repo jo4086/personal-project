@@ -12,6 +12,8 @@ require('dotenv').config()
 // 라우터 & 기타 모듈 호출
 const { sequelize } = require('./models')
 const passportConfig = require('./passport')
+const indexRouter = require('./routes/index')
+const authRouter = require('./routes/auth')
 
 passportConfig()
 app.set('port', process.env.PORT || 8010)
@@ -33,6 +35,7 @@ app.use(
 )
 
 app.use(morgan('dev'))
+app.use(express.json())
 
 app.use(cookieParser(process.env.COOKIE_SECRET))
 
@@ -52,6 +55,10 @@ app.use(
 app.use(passport.initialize())
 app.use(passport.session())
 
+// 라우터 등록
+app.use('/', indexRouter)
+app.use('/auth', authRouter)
+
 app.use((req, res, next) => {
     const err = new Error(`${method} ${req.url} 라우터경로가 없습니다.`)
     srr.status = 404 // err의 상태코드 404, 설정
@@ -59,6 +66,7 @@ app.use((req, res, next) => {
 })
 
 app.use((err, req, res, next) => {
+    console.error('Bad JSON:', err.body)
     const statusCode = err.status || 500 // 에러코드가 있으면 사용 없으면 500
     const errorMessage = err.message || '서버 내부 오류' // 에러 메세지 있으면 사용, 없으면 후자 출력
 

@@ -1,26 +1,25 @@
-import { propsFilter } from './util'
+import { propsFilter, pascalToCamel } from './util'
 import * as a from './styles/customStyled'
 
-const Text = ({ type = 'p', fontSize = null, display = 'block', children, style, ...props }) => {
+const Text = ({ type = 'p', fontsize = null, fontSize = null, display = 'block', children, style, ...props }) => {
    if (!ALLOWED_TAGS.includes(type)) {
       throw new Error(`Invalid type "${type}" provided to <Text />. Supported types are: [ ${ALLOWED_TAGS.map((tag) => `"${tag}"`).join(', ')} ]`)
    }
-   //    if (Object.keys(props).length > 0) {
-   if (fontSize) {
-      const chooseFontSize = fontSize.replace('px', '') || '12'
 
-      const reSizeFontSize = `${chooseFontSize * (DEFAULT_FONT_SIZES[type] || 1)}px`
-      props.fontSize = reSizeFontSize
+   if (Object.keys(props).length > 0) {
+      const convertProps = pascalToCamel(props)
+      const chooesFontSize = (fontSize ?? convertProps.fontSize)?.replace('px', '') || '13'
 
-      const styledProps = propsFilter(props, display, true)
+      const reSizeFontSize = `${chooesFontSize * (DEFAULT_FONT_SIZES[type] || 1)}px`
+      convertProps.fontSize = reSizeFontSize
 
+      const styledProps = propsFilter(convertProps, display, true)
       return (
          <a.Text as={type} $display={display} style={style} {...styledProps}>
             {children}
          </a.Text>
       )
    }
-   //    }
 
    const styledProps = propsFilter(props, display, true)
 
