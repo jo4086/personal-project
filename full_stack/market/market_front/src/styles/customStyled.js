@@ -107,7 +107,7 @@ export const Button = styled.button`
 export const Divider = styled.div`
     // padding: 0px;
     display: flex;
-    align-items: center;
+    // align-items: center;
     justify-content: center;
     box-sizing: border-box;
     width: 1px;
