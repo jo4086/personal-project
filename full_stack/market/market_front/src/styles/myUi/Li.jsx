@@ -1,8 +1,8 @@
-import * as a from '../customStyled'
-import filterPropsByLayout from './utils'
+import { propsFilter, camelToKebab } from './util'
+import * as a from './styles/customStyled'
 
 const Li = ({ display, children, style, ...props }) => {
-    const styledProps = filterPropsByLayout(props, display)
+    const styledProps = propsFilter(props, display)
 
     return (
         <a.Li style={style} {...styledProps}>

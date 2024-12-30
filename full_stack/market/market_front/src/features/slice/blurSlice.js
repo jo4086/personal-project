@@ -9,7 +9,7 @@ export const signCheckThunk = createAsyncThunk('blur/signCheck', async (blurdata
         return { type, message: response.message }
     } catch (err) {
         // return rejectWithValue(err)
-        return rejectWithValue({ type, message: err.response?.data?.message || '오류가 발생했습니다.' })
+        return rejectWithValue({ type, status: err.response?.data?.status || '오류', message: err.response?.data?.message || '오류가 발생했습니다.' })
     }
 })
 // rejectedWithValue

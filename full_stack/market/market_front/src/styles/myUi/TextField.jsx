@@ -1,7 +1,7 @@
 import { propsFilter, camelToKebab } from './util'
 import * as a from './styles/customStyled'
 
-const TextField = ({ display = 'flex', value, onChange, label, name, multiline, rows = 4, cols = 30, type = 'text', style, autoComplete, placeholder, className = 'undefined', phrStyles = 'undefined', onBlur, ...props }) => {
+const TextField = ({ display = 'flex', value, onChange, label, name, multiline, rows = 4, cols = 30, type = 'text', style, autoComplete, placeholder, className = 'undefined', phrStyles = 'undefined',onFocus, onBlur, ...props }) => {
     const styledProps = propsFilter(props, display, true)
     const Layout = multiline ? 'textarea' : 'input'
 
@@ -18,6 +18,7 @@ const TextField = ({ display = 'flex', value, onChange, label, name, multiline, 
                 display={display}
                 value={value}
                 onChange={onChange}
+                onFocus={onFocus}
                 onBlur={onBlur}
                 autoComplete={autoComplete}
                 placeholder={placeholder}

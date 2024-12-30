@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { signCheckThunk } from '../../features/slice/blurSlice'
 import { registerAddressThunk, registerUserThunk } from '../../features/slice'
 import { validateField, formatPhone } from '../../utils'
-import Login from './Login'
 
 const Signup = () => {
     const [name, setName] = useState('')
@@ -20,7 +19,6 @@ const Signup = () => {
     const [address, setAddress] = useState('')
     const [nickPlaceholder, setNickPlaceholder] = useState('* 기본값 = 아이디')
     const [textColor, setTextColor] = useState('black')
-    const [isSignupComplete, setIsSignupComplete] = useState(false)
 
     const dispatch = useDispatch()
     const { status, messages } = useSelector((state) => state.blur)
@@ -59,6 +57,7 @@ const Signup = () => {
         } else {
             setTextColor('red') // 유효하지 않은 시작번호
         }
+
     }
 
     const handleFocus = () => {
@@ -69,20 +68,21 @@ const Signup = () => {
         try {
             if (!data) return
 
+            let errorMessage = ''
+
+            // 1. 특수 규칙 처리
             if (type === 'confirmPassword') {
-                const errorMessage = validateField(type, data, confirmValue)
-                if (errorMessage) {
-                    console.error(errorMessage) // 프론트엔드 에러 처리
-                    alert(errorMessage)
-                }
-                return // 백엔드 요청 없이 종료
+                errorMessage = validateField(type, data, confirmValue)
+            } else {
+                // 2. 일반 규칙 처리
+                errorMessage = validateField(type, data)
             }
 
-            const errorMessage = validateField(type, data)
+            // 3. 공통 에러 처리
             if (errorMessage) {
                 alert(errorMessage)
-                console.error(errorMessage) // 콘솔로 에러 표시
-                return
+                console.error(errorMessage)
+                return // 유효하지 않으면 종료
             }
 
             if (type === 'phone') {
@@ -93,7 +93,6 @@ const Signup = () => {
             }
 
             await dispatch(signCheckThunk({ type, data })).unwrap()
-            
         } catch (err) {
             console.error(err)
         }
@@ -110,31 +109,18 @@ const Signup = () => {
 
             const sanitizedRefund = refund === '' ? null : refund
 
-            const userData = { isBusiness, name, userId, email, address, nick: sanitizedNick, phone, password, withdrawal: sanitizedWithdrawal, refund: sanitizedRefund }
+
+
+            const userData = { isBusiness, name, userId, email, nick: sanitizedNick, phone, password, withdrawal: sanitizedWithdrawal, refund: sanitizedRefund }
             dispatch(registerUserThunk(userData))
-                .unwrap()
-                .then(() => {
-                    setIsSignupComplete(true)
-                })
-                .catch((error) => {
-                    console.error('회원가입 중 에러: ', error)
-                })
+            dispatch(registerAddressThunk(address))
         },
         [dispatch, name, userId, email, nick, phone, password, withdrawal, refund],
     )
-    
-    if (isSignupComplete) {
-        return (
-            <Box {...BoxStyle} textAlign="center">
-                <Login status="signup" />
-            </Box>
-        )
-    }
 
     return (
         <>
             <Box {...BoxStyle} gap="14px">
-                <h2>회원가입</h2>
                 <form onSubmit={handleSubmit}>
                     <Text {...text}>개인정보</Text>
                     <Box gap="10px" width="100%" display="flex">

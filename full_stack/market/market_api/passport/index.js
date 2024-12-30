@@ -4,6 +4,8 @@ const passport = require('passport')
 const local = require('./localStrategy')
 const User = require('../models/user')
 
+console.log(local)
+
 module.exports = () => {
     // 1. 직렬화(serializeUser)
     passport.serializeUser((user, done) => {

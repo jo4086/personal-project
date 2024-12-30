@@ -14,6 +14,7 @@ const { sequelize } = require('./models')
 const passportConfig = require('./passport')
 const indexRouter = require('./routes/index')
 const authRouter = require('./routes/auth')
+const addressRouter = require('./routes/address')
 
 passportConfig()
 app.set('port', process.env.PORT || 8010)
@@ -58,6 +59,7 @@ app.use(passport.session())
 // 라우터 등록
 app.use('/', indexRouter)
 app.use('/auth', authRouter)
+app.use('/address', addressRouter)
 
 app.use((req, res, next) => {
     const err = new Error(`${method} ${req.url} 라우터경로가 없습니다.`)

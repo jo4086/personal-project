@@ -111,7 +111,7 @@ export const Divider = styled.div`
     justify-content: center;
     box-sizing: border-box;
     width: 1px;
-    height: 80%;
+    height: 60%;
     background-color: black;
     margin: auto 3px;
     color: #333;

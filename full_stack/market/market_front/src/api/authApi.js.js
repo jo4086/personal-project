@@ -22,6 +22,7 @@ export const registerUser = async (userData) => {
 
 export const loginUser = async(credentials) => {
     try {
+        console.log('api 회원정보',credentials)
         const response = await authApi.post('/auth/login', credentials)
         return response
     } catch (err) {

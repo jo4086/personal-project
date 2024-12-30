@@ -12,13 +12,17 @@ module.exports = () => {
             },
             async (identify, password, done) => {
                 try {
+                    // console.log(identify)
+                    // console.log('Received in LocalStrategy:', identify, password)
+
+                    console.log(password)
                     const isEmail = identify.includes('@')
 
                     const user = await User.findOne({
                         where: isEmail ? { email: identify } : { userId: identify },
                     })
                     if (!user) {
-                        return done(null, false, { message: '사용자의 이메일 또는 ID를 찾을 수 업습니다.' })
+                        return done(null, false, { message: '사용자의 이메일 또는 ID를 찾을 수 없습니다.' })
                     }
                     const isMatch = await bcrypt.compare(password, user.password)
                     if (!isMatch) {
