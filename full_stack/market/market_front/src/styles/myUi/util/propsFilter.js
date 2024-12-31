@@ -28,6 +28,7 @@ export const textPropsKeys = [
     'fontSize',
     'fontWeight',
     'textDecoration',
+    'fontFamily',
 ]
 /*
 
@@ -51,6 +52,10 @@ export const commonPropsKeys = [
     'marginSide',
     'backgroundColor',
     'border',
+    'borderTop',
+    'borderBottom',
+    'borderLight',
+    'borderLeft',
     'borderRadius',
     'boxShadow',
     'width',
@@ -75,11 +80,23 @@ export const commonPropsKeys = [
     'cursor',
 ]
 
+export const tablePropsKeys = [
+    'colspan', // 열 병합
+    'rowspan', // 행 병합
+    'cellSpacing', // 셀 간 간격
+    'cellPadding', // 셀 내부 간격
+    'borderCollapse', // 테이블 보더 스타일
+    'captionSide', // 테이블 캡션 위치
+    'emptyCells', // 빈 셀 표시 여부
+    'tableLayout', // 테이블 레이아웃
+]
+
 const capitalizeFirstLetter = (str) => str.charAt(0).toUpperCase() + str.slice(1)
 
 const createStateKeys = (commonProps, textProps) => {
     // 1. commonPropsKeys와 textPropsKeys 합치기
     console.log('Creating state keys...')
+    // console.log('common',commonProps)
     const combinedKeys = [...commonProps, ...textProps]
 
     // 2. 첫 글자를 대문자로 변환
@@ -104,9 +121,13 @@ const propsFilter = (props, display, text = true) => {
     if (!validKeysCache[display]) {
         console.log(`Generating valid keys for ${display}...`)
         const layoutKeys = {
-            flex: [...flexPropsKeys, ...commonPropsKeys],
-            grid: [...gridPropsKeys, ...commonPropsKeys],
+            flex: [...flexPropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
+            grid: [...gridPropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
+            table: [...tablePropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
+            'table-cell': [...tablePropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
+            'table-row': [...tablePropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
         }
+        // console.log('layoutKeys',layoutKeys)
 
         // display별 validKeys 생성 및 캐싱
         validKeysCache[display] = [
@@ -116,6 +137,7 @@ const propsFilter = (props, display, text = true) => {
             ]),
             ...(text ? textPropsKeys : []),
         ]
+        // console.log(validKeysCache)
     }
 
     const validKeys = validKeysCache[display] // 캐싱된 키 사용

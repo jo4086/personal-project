@@ -81,10 +81,12 @@ export const Container = styled.div`
     align-items: ${(props) => props.$alignItems || 'center'};
 
     padding: ${(props) => calcPadding(props)};
-    // margin: ${(props) => calcMargin(props)};
+    margin: ${(props) => calcMargin(props)};
 `
 export const Text = styled.p`
     ${(props) => autoStylesProps(props)}
+    padding: ${(props) => calcPadding(props)};
+    margin: ${(props) => calcMargin(props)};
 `
 
 export const Box = styled.div`
@@ -99,10 +101,9 @@ export const Box = styled.div`
 // `
 
 export const HyperLink = styled(Link)`
-    ${(props) => autoStylesProps(props)}
+    color: black;
+    text-decoration: none;
     transition: color 0.3s ease;
-    padding: ${(props) => calcPadding(props)};
-    margin: ${(props) => calcMargin(props)};
 
     &:hover {
         color: ${(props) => props.$hoverColor || props.$color || 'blue'};
@@ -110,6 +111,9 @@ export const HyperLink = styled(Link)`
     &:visited {
         color: ${(props) => props.$visitedColor || props.$color || 'inherit'};
     }
+    ${(props) => autoStylesProps(props)}
+    padding: ${(props) => calcPadding(props)};
+    margin: ${(props) => calcMargin(props)};
 `
 
 export const Button = styled.button`
@@ -139,5 +143,57 @@ export const Nav = styled.nav`
     // user-select: none;
 `
 export const Li = styled.li`
+    box-sizing: border-box;
     ${(props) => autoStylesProps(props)}
+    padding: ${(props) => calcPadding(props)};
+    margin: ${(props) => calcMargin(props)};
+`
+export const Ul = styled.ul`
+    box-sizing: border-box;
+    list-style: none;
+    ${(props) => autoStylesProps(props)}
+    padding: ${(props) => calcPadding(props)};
+    margin: ${(props) => calcMargin(props)};
+    border-radius: 10px;
+`
+
+export const Table = styled.table`
+    box-sizing: border-box;
+    border-collapse: collapse;
+    ${(props) => autoStylesProps(props)}
+    padding: ${(props) => calcPadding(props)};
+    margin: ${(props) => calcMargin(props)};
+`
+
+export const Thead = styled.thead`
+    box-sizing: border-box;
+    border-collapse: collapse;
+
+    ${(props) => autoStylesProps(props)}
+    padding: ${(props) => calcPadding(props)};
+    margin: ${(props) => calcMargin(props)};
+`
+
+export const Tbody = styled.tbody`
+    box-sizing: border-box;
+    border-collapse: collapse;
+    // border-collapse: separate;
+    ${(props) => autoStylesProps(props)}
+    padding: ${(props) => calcPadding(props)};
+    margin: ${(props) => calcMargin(props)};
+`
+export const Divider = styled.div`
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    width: 1px;
+    height: 100%;
+    background-color: black;
+    margin: auto 3px;
+    color: #333;
+    alignItems:center;
+
+    ${(props) => autoStylesProps(props)}
+    padding: ${(props) => calcPadding(props)};
+    margin: ${(props) => calcMargin(props)};
 `

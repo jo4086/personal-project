@@ -1,0 +1,5 @@
+export { default as BuyBoard } from './BuyBoard'
+export { default as FreeBoard } from './FreeBoard'
+export { default as InfoBoard } from './InfoBoard'
+export { default as NoticeBoard } from './NoticeBoard'
+export { default as SellBoard } from './SellBoard'

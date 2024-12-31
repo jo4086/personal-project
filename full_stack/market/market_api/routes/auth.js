@@ -117,7 +117,7 @@ router.post('/join/check/:type', blurCheck, async (req, res) => {
         res.status(500).json({
             response: 'fail',
             status: 'Internal Server Error',
-            message: '서버 내부 오류가 발생하였습니다.',
+            message: '서버 내부 오류 발생.',
         })
     }
 })
@@ -158,7 +158,7 @@ router.post('/join', async (req, res) => {
             return res.status(201).json({
                 response: 'success',
                 status: 'created',
-                message: '유저가 등록되었습니다.',
+                message: '유저 등록 완료. (주소미입력)',
                 user: {
                     uniqueId: newUser.id,
                     name: newUser.name,
@@ -203,7 +203,7 @@ router.post('/join', async (req, res) => {
         return res.status(201).json({
             response: 'success',
             status: 'Created',
-            message: '유저와 주소가 등록되었습니다.',
+            message: '유저 및 주소 등록완료.',
             user: result,
         })
     } catch (err) {
@@ -211,7 +211,7 @@ router.post('/join', async (req, res) => {
         res.status(500).json({
             response: 'fail',
             status: 'Internal Server Error',
-            message: '서버 내부 오류가 발생하였습니다.',
+            message: '서버 내부 오류 발생.',
         })
     }
 })
@@ -282,6 +282,34 @@ router.get('/status', async (req, res, next) => {
             isAuthenticated: false,
         })
     }
+})
+
+router.get('/logout', isLoggedIn, async (req, res, next) => {
+    req.logout((err) => {
+        if (err) {
+            console.log({
+                path: 'routes/auth.js',
+                code: {
+                    line: 287,
+                    method: 'GET',
+                    endpoint: '/auth/logout',
+                },
+                error: err,
+            })
+
+            return res.status(500).json({
+                response: 'fail',
+                status: 'Error',
+                message: '로그아웃 도중 에러 발생'
+            })
+        }
+
+        res.status(200).json({
+            response: 'success',
+            status: 'logout complete',
+            message: '로그아웃 성공.'
+        })
+    })
 })
 
 module.exports = router

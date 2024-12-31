@@ -81,6 +81,8 @@ export const Button = styled.button`
     text-decoration: none;
     // box-shadow: #000000;
     box-shadow: ${(props) => (props.$boxShadow ? '0 0 1px 0.5px rgba(0, 0, 0,0.8)' : 'none')};
+    height: ${(props) => props.$height || 'none'};
+    margin: ${(props) => props.$margin || '0 auto'};
     padding: ${(props) => {
         // 가장 우선적으로 padding을 체크
         if (props.padding) {
@@ -111,7 +113,7 @@ export const Divider = styled.div`
     justify-content: center;
     box-sizing: border-box;
     width: 1px;
-    height: 60%;
+    height: 50%;
     background-color: black;
     margin: auto 3px;
     color: #333;

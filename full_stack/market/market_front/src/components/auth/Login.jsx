@@ -172,7 +172,7 @@ const Login = ({ status }) => {
                     />
                     <Text {...text}>
                         이메일를 잊어버렸나요?{' '}
-                        <HyperLink to="/origin" {...hyper}>
+                        <HyperLink to="/origin" color="blue" {...hyper}>
                             이메일{' '}
                         </HyperLink>
                         찾기
@@ -188,7 +188,7 @@ const Login = ({ status }) => {
                     />
                     <Text {...text}>
                         비밀번호를 잊어버렸나요?{' '}
-                        <HyperLink to="/origin" {...hyper}>
+                        <HyperLink to="/origin" color="blue" {...hyper}>
                             {' '}
                             비밀번호{' '}
                         </HyperLink>{' '}

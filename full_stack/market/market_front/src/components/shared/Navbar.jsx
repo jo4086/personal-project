@@ -3,13 +3,26 @@ import { AppBar } from '@mui/material'
 import { Nav, Button, Divider, Li, Text } from '../../styles/myUi'
 import { logoutUserThunk } from '../../features/slice'
 import { useDispatch, useSelector } from 'react-redux'
+import { useCallback } from 'react'
 
 const Navbar = ({ isAuthenticated, user }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    console.log(isAuthenticated)
+    // console.log(isAuthenticated)
+    // console.log(user)
 
-    console.log(user)
+
+    const handleLogout = useCallback(() => {
+        dispatch(logoutUserThunk())
+            .unwrap()
+            .then(() => {
+                navigate('/')
+            })
+            .catch((err) => {
+                alert(err)
+            })
+    }, [dispatch, navigate])
+
     return (
         <Nav {...navrprops}>
             <Link to="/">
@@ -23,14 +36,20 @@ const Navbar = ({ isAuthenticated, user }) => {
             <ul style={{ display: 'flex', gap: '5px', alignItems: 'center', height: '100%' }}>
                 {/* <Li>환영합니다.</Li> */}
                 {isAuthenticated ? (
-                    <Li display="flex" alignItems="center">
-                        <Text display="inline" fontSize="12px" color="rgb(100,100,100)" marginRight="6px">
-                            환영합니다
-                        </Text>
-                        <Text display="inline" fontSize="13px" color="rgb(100,100,100)" marginRight="6px">
-                            {user.nick}님
-                        </Text>
-                    </Li>
+                    <>
+                        <Li display="flex" alignItems="center">
+                            <Text display="inline" fontSize="12px" color="rgb(20,20,20)" lineHeight="30px">
+                                환영합니다{' '}
+                                <Text display="inline" fontSize="13px" color="rgb(100,100,100)" fontWeight="bold" lineHeight="30px" marginSide="2px">
+                                    {user.nick}
+                                </Text>
+                                님
+                            </Text>
+                        </Li>
+                        <Li height="100%" display="flex">
+                            <Divider />
+                        </Li>
+                    </>
                 ) : null}
                 <Li>
                     <Link to="/mypage" style={{ textDecoration: 'none', caretColor: 'transparent', cursor: 'pointer' }}>
@@ -43,12 +62,10 @@ const Navbar = ({ isAuthenticated, user }) => {
                     <Divider />
                 </Li>
                 {isAuthenticated ? (
-                    <Li>
-                        <Link to="/logout" style={{ textDecoration: 'none' }}>
-                            <Button boxShadow paddingVertical="2px">
-                                Logout
-                            </Button>
-                        </Link>
+                    <Li onClick={handleLogout}>
+                        <Button boxShadow paddingVertical="2px">
+                            Logout
+                        </Button>
                     </Li>
                 ) : (
                     <Li>

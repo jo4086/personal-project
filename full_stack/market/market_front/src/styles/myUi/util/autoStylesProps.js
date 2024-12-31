@@ -6,6 +6,7 @@ const autoStylesProps = (props) => {
    const stateStyles = {}
 
    Object.entries(props).forEach(([key, value]) => {
+      // console.log(key, value)
       if (key.startsWith('$')) {
          const cleanKey = key.slice(1) // '$' 제거
          const matchedState = statePrefixes.find((state) => cleanKey.startsWith(state))

@@ -2,9 +2,8 @@ import { propsFilter } from './util'
 import * as a from './styles/customStyled'
 
 const Box = ({ display = 'flex', children, style, ...props }) => {
-    const styledProps = propsFilter(props, display)
+    const styledProps = propsFilter(props, display, true)
 
-    // console.log(styledProps)
     return (
         <>
             <a.Box $display={display} style={style} {...styledProps}>
