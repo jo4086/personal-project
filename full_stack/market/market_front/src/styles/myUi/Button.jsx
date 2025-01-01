@@ -1,6 +1,6 @@
 import * as a from '../customStyled'
 
-const Button = ({ onClick, children, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, paddingSide, paddingVertical, width, boxShadow, height, style, margin, ...props }) => {
+const Button = ({ onClick, children, padding, paddingTop, paddingBottom, paddingLeft, paddingRight, paddingSide, paddingVertical, width, boxShadow, height, style, margin, userSelect, ...props }) => {
     return (
         <a.Button
             onClick={onClick}
@@ -15,6 +15,7 @@ const Button = ({ onClick, children, padding, paddingTop, paddingBottom, padding
             $height={height}
             $boxShadow={boxShadow}
             $margin={margin}
+            $userSelect={userSelect}
             style={style}
             {...props}>
             {children}

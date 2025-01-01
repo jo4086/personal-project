@@ -68,4 +68,5 @@ const tabStyle = {
     fontSize: '1.1em',
     fontFamily: 'Jua',
     paddingTop: '2px',
+    userSelect:'none'
 }

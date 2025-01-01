@@ -1,11 +1,11 @@
 import { Navigate, useParams } from 'react-router-dom'
-import { Box, Button, Container, Text } from '../styles/myUi'
+import { Box, Button, Container, HyperLink, Text } from '../styles/myUi'
 import { theme } from '../styles/myUi/common'
 import { Boardbar, Banner } from '../components/shared'
 import * as Boards from '../components/board'
 import { capitalize } from '../utils'
 
-const BoardSelector = () => {
+const BoardSelector = ({isAuthenticated}) => {
     const { type } = useParams()
 
     if (!type) {
@@ -39,11 +39,15 @@ const BoardSelector = () => {
         <Container {...theme}>
             <Banner />
             <Boardbar />
-            <Box backgroundColor="yellow" width="100%" justifyContent="space-between" alignItems="end">
+            <Box margin="5px auto" backgroundColor="yellow" width="100%" justifyContent="space-between" alignItems="end">
                 <Text {...titleStyle}>{board.title}</Text>
-                <Button margin="10px" width="100px" height="30px" boxShadow="0 0 1px rgba(0,0,0,0.4)">
-                    글쓰기
-                </Button>
+                {isAuthenticated && (type !== 'notice') && (
+                    <HyperLink to="/post/create">
+                        <Button margin="10px" width="100px" height="30px" boxShadow="0 0 1px rgba(0,0,0,0.4)" userSelect="none">
+                            글쓰기
+                        </Button>
+                    </HyperLink>
+                )}
             </Box>
             <Box marginVertical="3px" width="98%" height="1px" borderTop="1px solid rgba(0,0,0,0.3)" />
             <SelectBoard />

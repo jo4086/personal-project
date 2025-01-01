@@ -47,7 +47,7 @@ const Navbar = ({ isAuthenticated, user }) => {
                             </Text>
                         </Li>
                         <Li height="100%" display="flex">
-                            <Divider />
+                            <Divider height="50%" />
                         </Li>
                     </>
                 ) : null}
@@ -59,7 +59,7 @@ const Navbar = ({ isAuthenticated, user }) => {
                     </Link>
                 </Li>
                 <Li height="100%" display="flex">
-                    <Divider />
+                    <Divider height="50%" />
                 </Li>
                 {isAuthenticated ? (
                     <Li onClick={handleLogout}>

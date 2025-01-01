@@ -1,4 +1,3 @@
-import { borderRadius, lineHeight, textAlign } from '@mui/system'
 import { Box, Text, HyperLink, Ul, Li, Table, Thead, Tbody, Divider } from '../../styles/myUi'
 
 const FreeBoard = () => {

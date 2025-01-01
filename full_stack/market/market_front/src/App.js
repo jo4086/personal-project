@@ -26,7 +26,7 @@ function App() {
                 <Route path="/signup" element={<SignupPage />} />
                 <Route path="/post/create" element={<PostCreatePage />} />
                 <Route path="/board" element={<BoardSelector />} />
-                <Route path="/board/:type" element={<BoardSelector />} />
+                <Route path="/board/:type" element={<BoardSelector isAuthenticated={isAuthenticated} />} />
             </Routes>
         </>
     )
