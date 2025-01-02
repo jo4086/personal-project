@@ -54,7 +54,7 @@ export const commonPropsKeys = [
     'border',
     'borderTop',
     'borderBottom',
-    'borderLight',
+    'borderRight',
     'borderLeft',
     'borderRadius',
     'boxShadow',
@@ -78,6 +78,14 @@ export const commonPropsKeys = [
     'bottom',
     'userSelect',
     'cursor',
+    'position',
+    'labelTop',
+    'fsLabelLeft',
+    'fsLabelTop',
+    'zIndex',
+    'atvAfterWidth',
+    'fsFontSize',
+    'atvAfterLeft',
 ]
 
 export const tablePropsKeys = [

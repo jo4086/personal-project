@@ -1,7 +1,7 @@
 import { propsFilter } from './util'
 import * as a from './styles/customStyled'
 
-const Text = ({ type = 'p', fontSize = null, display = 'block', children, style, onClick, ...props }) => {
+const Text = ({ type = 'p', fontSize = null, display = 'block', children, style, onClick,className, ...props }) => {
     if (!ALLOWED_TAGS.includes(type)) {
         throw new Error(`Invalid type "${type}" provided to <Text />. Supported types are: [ ${ALLOWED_TAGS.map((tag) => `"${tag}"`).join(', ')} ]`)
     }
@@ -15,7 +15,7 @@ const Text = ({ type = 'p', fontSize = null, display = 'block', children, style,
         const styledProps = propsFilter(props, display, true)
 
         return (
-            <a.Text as={type} onClick={onClick} $display={display} style={style} {...styledProps}>
+            <a.Text as={type} className={className} onClick={onClick} $display={display} style={style} {...styledProps}>
                 {children}
             </a.Text>
         )
@@ -25,7 +25,7 @@ const Text = ({ type = 'p', fontSize = null, display = 'block', children, style,
     const styledProps = propsFilter(props, display, true)
 
     return (
-        <a.Text as={type} onClick={onClick} $display={display} style={style} {...styledProps}>
+        <a.Text as={type} className={className} onClick={onClick} $display={display} style={style} {...styledProps}>
             {children}
         </a.Text>
     )

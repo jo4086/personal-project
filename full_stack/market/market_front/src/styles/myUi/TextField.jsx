@@ -1,13 +1,13 @@
 import { propsFilter, camelToKebab } from './util'
 import * as a from './styles/customStyled'
 
-const TextField = ({ display = 'flex', value, onChange, label, name, multiline, rows = 4, cols = 30, type = 'text', style, autoComplete, placeholder, className = 'undefined', phrStyles = 'undefined',onFocus, onBlur, ...props }) => {
+const TextField = ({ display = 'flex', value, borderBreak, onChange, label, name, multiline, rows = 4, cols = 30, type = 'text', style, autoComplete, placeholder, className = 'undefined', phrStyles = 'undefined', onFocus, onBlur, ...props }) => {
     const styledProps = propsFilter(props, display, true)
     const Layout = multiline ? 'textarea' : 'input'
 
     // console.log(styledProps)
     return (
-        <a.TextField {...styledProps}>
+        <a.TextField {...styledProps} className={borderBreak && value ? 'active' : ''}>
             <Layout
                 id={name} // input, textarea 지정
                 name={name}
@@ -22,7 +22,7 @@ const TextField = ({ display = 'flex', value, onChange, label, name, multiline, 
                 onBlur={onBlur}
                 autoComplete={autoComplete}
                 placeholder={placeholder}
-                className={className}
+                className={className && value ? 'active' : ''}
             />
             {label && (
                 <label htmlFor={name} className={value ? 'active' : ''}>

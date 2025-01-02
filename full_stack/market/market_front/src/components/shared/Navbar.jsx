@@ -40,7 +40,7 @@ const Navbar = ({ isAuthenticated, user }) => {
                         <Li display="flex" alignItems="center">
                             <Text display="inline" fontSize="12px" color="rgb(20,20,20)" lineHeight="30px">
                                 환영합니다{' '}
-                                <Text display="inline" fontSize="13px" color="rgb(100,100,100)" fontWeight="bold" lineHeight="30px" marginSide="2px">
+                                <Text type="span" display="inline" fontSize="13px" color="rgb(100,100,100)" fontWeight="bold" lineHeight="30px" marginSide="2px">
                                     {user.nick}
                                 </Text>
                                 님

@@ -50,7 +50,7 @@ const BoardSelector = ({isAuthenticated}) => {
                 )}
             </Box>
             <Box marginVertical="3px" width="98%" height="1px" borderTop="1px solid rgba(0,0,0,0.3)" />
-            <SelectBoard />
+            <SelectBoard  />
         </Container>
     )
 }

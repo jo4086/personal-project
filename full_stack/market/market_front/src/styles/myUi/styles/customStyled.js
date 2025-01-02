@@ -32,10 +32,28 @@ export const TextField = styled.div`
         font-size: ${(props) => props.$labelFontSize || '14px'};
         color: ${(props) => props.$labelColor || 'black'};
         // border: 1px solid black;
+        top: ${(props) => props.$labelTop || '15px'};
+    }
+
+    &.active::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 30px; /* 중앙에서 시작 */
+        width: 40px; /* 초기 상태에서는 보이지 않음 */
+        height: 1px;
+        background-color: white;
+        transform: translateX(0%);
+        transition: width 0.35s ease-in-out; /* 부드럽게 확장 */
+        transition: transform 0.35s ease-in-out;
+        z-index: 1000; /* 입력 필드 뒤로 보이도록 설정 */
+        width: ${(props) => props.$atvAfterWidth || '40px'};
+        left: ${(props) => props.$atvAfterLeft || '40px'};
     }
 
     input,
     textarea {
+        position: 'relative';
         ${(props) => autoStylesProps(props)}
         outline: ${(props) => props.$outline || 'none'};
         display: ${(props) => props.$display || 'block'};
@@ -54,18 +72,23 @@ export const TextField = styled.div`
     textarea {
         resize: ${(props) => (props.$resize ? props.$resize : 'none')};
     }
+
     label.active {
         top: 7px;
         left: 15px;
         font-size: 10px;
-        color: #4caf50;
+        color: darkblue;
+        top: ${(props) => props.$fsLabelTop || '7px'};
+        left: ${(props) => props.$fsLabelLeft || '15px'};
+        font-size: ${(props) => props.$fsFontSize || '10px'};
+        z-index:2000;
     }
-    input:focus + label {
-        top: 7px;
-        left: 15px;
-        font-size: 10px;
-        color: #4caf50;
-    }
+    // input:focus + label {
+    //     top: 7px;
+    //     left: 15px;
+    //     font-size: 10px;
+    //     color: #4caf50;
+    // }
 `
 export const Container = styled.div`
     box-sizing: border-box;
@@ -84,6 +107,7 @@ export const Container = styled.div`
     margin: ${(props) => calcMargin(props)};
 `
 export const Text = styled.p`
+    box-sizing: border-box;
     ${(props) => autoStylesProps(props)}
     padding: ${(props) => calcPadding(props)};
     margin: ${(props) => calcMargin(props)};
@@ -151,10 +175,10 @@ export const Li = styled.li`
 export const Ul = styled.ul`
     box-sizing: border-box;
     list-style: none;
+    border-radius: 10px;
     ${(props) => autoStylesProps(props)}
     padding: ${(props) => calcPadding(props)};
     margin: ${(props) => calcMargin(props)};
-    border-radius: 10px;
 `
 
 export const Table = styled.table`
@@ -191,7 +215,7 @@ export const Divider = styled.div`
     background-color: black;
     margin: auto 3px;
     color: #333;
-    alignItems:center;
+    alignitems: center;
 
     ${(props) => autoStylesProps(props)}
     padding: ${(props) => calcPadding(props)};
