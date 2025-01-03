@@ -1,11 +1,14 @@
-import { propsFilter } from './util'
+import { filterProps } from './util'
 import * as a from './styles/customStyled'
-const Box = ({ onClick,ref, display = 'flex', children, style, ...props }) => {
-    const styledProps = propsFilter(props, display, true)
+
+const Box = ({ display = 'flex', children, ...props }) => {
+    const filteredProps = filterProps(props, display, true)
+
+    // console.log(filteredProps)
 
     return (
         <>
-            <a.Box $display={display} onClick={onClick} ref={ref} style={style} {...styledProps}>
+            <a.Box $display={display} {...filteredProps}>
                 {children}
             </a.Box>
         </>

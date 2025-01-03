@@ -1,14 +1,17 @@
-import { propsFilter } from './util'
+import { filterProps } from './util'
 import * as a from './styles/customStyled'
 
 const Nav = ({ display = 'flex', children, ...props }) => {
-   const styledProps = propsFilter(props, display)
+    const filteredProps = filterProps(props, display, true)
 
-   return (
-      <a.Nav $display={display} {...styledProps}>
-         {children}
-      </a.Nav>
-   )
+   //  const { styledProps, otherProps } = propsFilter(props, display, true)
+    // const styledProps = propsFilter(props, display)
+
+    return (
+        <a.Nav $display={display} {...filteredProps}>
+            {children}
+        </a.Nav>
+    )
 }
 
 export default Nav

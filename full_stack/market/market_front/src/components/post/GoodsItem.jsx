@@ -19,7 +19,7 @@ const GoodsItem = ({ category }) => {
         '여행/레저': ['캠핑 용품', '여행 가방', '스포츠 용품', '자전거'],
         '유아/아동용품': ['장난감', '유모차', '카시트', '유아 의류'],
     }
-    console.log(goods_Options[category])
+    // console.log(goods_Options[category])
 
     const toggleDropdown_goods = () => {
         setDropdown_goods((prev) => !prev)

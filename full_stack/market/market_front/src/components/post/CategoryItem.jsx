@@ -2,7 +2,7 @@ import { Text, Box, Ul, Li } from '../../styles/myUi'
 import { dropdownBox, dropdownItems, dropdownItem, categoryCommon } from '../../styles/myUi/common'
 import React, { useState, useRef, useEffect } from 'react'
 
-const CatrgoryItem = ({ selectedBoard, onCategorySelect }) => {
+const CategoryItem = ({ selectedBoard, onCategorySelect }) => {
     const [category2, setCategory2] = useState('── 필수 ──')
     const [isDropdown2, setDropdown2] = useState(false) // 드롭다운 열림/닫힘 상태
 
@@ -13,7 +13,7 @@ const CatrgoryItem = ({ selectedBoard, onCategorySelect }) => {
         구매게시판: ['전자기기', '가전제품', '애완용품', '취미/생활', '컴퓨터/IT', '여행/레저', '패션/의류', '가구/인테리어', '유아/아동용품'],
         정보게시판: ['정보', '핫딜', 'IT/과학', '경제'],
     }
-    console.log(category2_Options[selectedBoard])
+    // console.log(category2_Options[selectedBoard])
  
 
     useEffect(() => {
@@ -67,7 +67,7 @@ const CatrgoryItem = ({ selectedBoard, onCategorySelect }) => {
     )
 }
 
-export default CatrgoryItem
+export default CategoryItem
 {
     /* 3차 카테고리 */
 }

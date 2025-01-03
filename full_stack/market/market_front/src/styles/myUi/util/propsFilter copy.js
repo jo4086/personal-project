@@ -127,8 +127,7 @@ let validKeysCache = {} // display별로 캐싱
 
 const propsFilter = (props, display, text = true) => {
     if (!validKeysCache[display]) {
-        // console.log(`Generating valid keys for ${display}...`)
-
+        console.log(`Generating valid keys for ${display}...`)
         const layoutKeys = {
             flex: [...flexPropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
             grid: [...gridPropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
@@ -136,29 +135,30 @@ const propsFilter = (props, display, text = true) => {
             'table-cell': [...tablePropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
             'table-row': [...tablePropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
         }
+        // console.log('layoutKeys',layoutKeys)
 
-        validKeysCache[display] = [...(layoutKeys[display] || [...commonPropsKeys, ...Object.values(stateKeys).flat()]), ...(text ? textPropsKeys : [])]
+        // display별 validKeys 생성 및 캐싱
+        validKeysCache[display] = [
+            ...(layoutKeys[display] || [
+                ...commonPropsKeys,
+                ...Object.values(stateKeys).flat(), // 5가지 상태 추가
+            ]),
+            ...(text ? textPropsKeys : []),
+        ]
+        // console.log(validKeysCache)
     }
 
-    const validKeys = validKeysCache[display]
-    const validKeysSet = new Set(validKeys)
+    const validKeys = validKeysCache[display] // 캐싱된 키 사용
+    const validKeysSet = new Set(validKeys) // Set으로 변환
+    //    console.log(validKeys)
 
-    // CSS 속성 필터링 및 나머지 속성 분리
-    const filtered = { styledProps: {}, otherProps: {} }
-
-    Object.keys(props).forEach((key) => {
-        const cleanKey = key.startsWith('$') ? key.slice(1) : key
-
+    return Object.keys(props).reduce((acc, key) => {
+        const cleanKey = key.startsWith('$') ? key.slice(1) : key // $ 제거
         if (validKeysSet.has(cleanKey)) {
-            // CSS 속성은 $ 접두어 붙여서 styledProps에 저장
-            filtered.styledProps[`$${cleanKey}`] = props[key]
-        } else {
-            // 나머지 속성은 otherProps에 저장
-            filtered.otherProps[key] = props[key]
+            acc[`$${cleanKey}`] = props[key] // $ 접두어 추가
         }
-    })
-
-    return filtered
+        return acc
+    }, {})
 }
 export default propsFilter
 
@@ -170,39 +170,4 @@ const validKeys = [
     ...(text ? textPropsKeys : []), // text가 true일 때만 textPropsKeys 추가
 ]
 
-*/
-/*
-const propsFilter = (props, display, text = true) => {
-    if (!validKeysCache[display]) {
-        const layoutKeys = {
-            flex: [...flexPropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
-            grid: [...gridPropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
-            table: [...tablePropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
-            'table-cell': [...tablePropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
-            'table-row': [...tablePropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
-        }
-
-        validKeysCache[display] = [...(layoutKeys[display] || [...commonPropsKeys, ...Object.values(stateKeys).flat()]), ...(text ? textPropsKeys : [])]
-    }
-
-    const validKeys = validKeysCache[display]
-    const validKeysSet = new Set(validKeys)
-
-    // CSS 속성 필터링 및 나머지 속성 분리
-    const filtered = { styledProps: {}, otherProps: {} }
-
-    Object.keys(props).forEach((key) => {
-        const cleanKey = key.startsWith('$') ? key.slice(1) : key
-
-        if (validKeysSet.has(cleanKey)) {
-            // CSS 속성은 $ 접두어 붙여서 styledProps에 저장
-            filtered.styledProps[`$${cleanKey}`] = props[key]
-        } else {
-            // 나머지 속성은 otherProps에 저장
-            filtered.otherProps[key] = props[key]
-        }
-    })
-
-    return filtered
-}
 */

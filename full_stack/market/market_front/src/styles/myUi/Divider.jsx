@@ -1,12 +1,15 @@
-import { propsFilter, camelToKebab } from './util'
+import { propsFilter, camelToKebab, filterProps } from './util'
 import * as a from './styles/customStyled'
 
 const Divider = ({ display = 'flex',margin="auto 3px", style, ...props }) => {
-    const styledProps = propsFilter(props, display, false)
+    const filteredProps = filterProps(props, display, true)
+
+    // const { styledProps, otherProps } = propsFilter(props, display, true)
+    // const styledProps = propsFilter(props, display, false)
 
     return (
         <>
-            <a.Divider $display={display} $margin={margin} style={style} {...styledProps}></a.Divider>
+            <a.Divider $display={display}{...filteredProps}></a.Divider>
         </>
     )
 }

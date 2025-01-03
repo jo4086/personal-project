@@ -1,13 +1,13 @@
-import { propsFilter, camelToKebab } from './util'
+import { camelToKebab, filterProps } from './util'
 import * as a from './styles/customStyled'
 
-const TextField = ({ display = 'flex', value, borderBreak, onChange, label, name, multiline, rows = 4, cols = 30, type = 'text', style, autoComplete, placeholder, className = 'undefined', phrStyles = 'undefined', onFocus, onBlur, ...props }) => {
-    const styledProps = propsFilter(props, display, true)
+const TextField = ({ display = 'flex', value, borderBreak, onChange, label, name, multiline, rows = 4, cols = 30, type = 'text', autoComplete, placeholder, className = 'undefined', phrStyles = 'undefined', onFocus, onBlur,style, ...props }) => {
+    const filteredProps = filterProps(props, display, true)
     const Layout = multiline ? 'textarea' : 'input'
 
-    // console.log(styledProps)
+    console.log(rows)
     return (
-        <a.TextField {...styledProps} className={borderBreak && value ? 'active' : ''}>
+        <a.TextField {...filteredProps} className={borderBreak && value ? 'active' : ''}>
             <Layout
                 id={name} // input, textarea 지정
                 name={name}
@@ -22,7 +22,7 @@ const TextField = ({ display = 'flex', value, borderBreak, onChange, label, name
                 onBlur={onBlur}
                 autoComplete={autoComplete}
                 placeholder={placeholder}
-                className={className && value ? 'active' : ''}
+                className={className && value ? 'active' : className}
             />
             {label && (
                 <label htmlFor={name} className={value ? 'active' : ''}>

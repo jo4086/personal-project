@@ -5,4 +5,4 @@ export { default as calcPadding } from './calcPadding'
 export { default as camelToKebab } from './camelToKebab'
 export { default as isPascalCase } from './isPascalCase'
 export { default as pascalToCamel } from './pascalToCamel'
-
+export { default as filterProps } from './filterProps'

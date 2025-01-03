@@ -1,22 +1,24 @@
-import { propsFilter, camelToKebab } from './util'
+import { filterProps } from './util'
+
 import * as a from './styles/customStyled'
 
-const Ul = ({onClick, className,type = 'ul', display = 'flex', children, style, ...props }) => {
-    const styledProps = propsFilter(props, display, true)
+const Ul = ({ type = 'ul', display = 'flex', children, ...props }) => {
+    const filteredProps = filterProps(props, display, true)
+
+
 
     if (type === 'tr') {
-        const styledProps = propsFilter(props, 'table-row', true)
-        // console.log(styledProps)
+        const filteredProps = filterProps(props, display, true)
 
         return (
-            <a.Ul onClick={onClick} as={type} className={className} $display="table-row" style={style} {...styledProps}>
+            <a.Ul as={type} $display="table-row" {...filteredProps}>
                 {children}
             </a.Ul>
         )
     }
 
     return (
-        <a.Ul onClick={onClick} as={type} className={className} $display={display} style={style} {...styledProps}>
+        <a.Ul as={type} $display={display} {...filteredProps}>
             {children}
         </a.Ul>
     )

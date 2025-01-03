@@ -32,7 +32,8 @@ export const TextField = styled.div`
         font-size: ${(props) => props.$labelFontSize || '14px'};
         color: ${(props) => props.$labelColor || 'black'};
         // border: 1px solid black;
-        top: ${(props) => props.$labelTop || '15px'};
+        top: ${(props) => props.$labelTop || '20px'};
+        left: ${(props) => props.$labelLeft || '15px'};
     }
 
     &.active::after {
@@ -81,7 +82,7 @@ export const TextField = styled.div`
         top: ${(props) => props.$fsLabelTop || '7px'};
         left: ${(props) => props.$fsLabelLeft || '15px'};
         font-size: ${(props) => props.$fsFontSize || '10px'};
-        z-index:2000;
+        z-index: 2000;
     }
     // input:focus + label {
     //     top: 7px;

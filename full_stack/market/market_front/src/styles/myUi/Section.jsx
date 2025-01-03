@@ -1,10 +1,13 @@
-import * as a from '../customStyled'
-import filterPropsByLayout from './utils'
+// import * as a from '../customStyled'
+import * as a from './styles/customStyled'
+import { filterProps } from './util'
 
 const Section = ({ display = 'flex', children, style, ...props }) => {
-    const styledProps = filterPropsByLayout(props, display)
+    const filteredProps = filterProps(props, display, true)
+
+    // const styledProps = filterPropsByLayout(props, display)
     return (
-        <a.Container $display={display} style={style} {...styledProps}>
+        <a.Container $display={display}  {...filteredProps}>
             {children}
         </a.Container>
     )

@@ -1,10 +1,9 @@
 import { Container, Text, Box, Ul, Li, Divider, InputField, TextField } from '../styles/myUi'
 import { theme, dropdownBox, dropdownItems, dropdownItem, postform } from '../styles/myUi/common'
 import React, { useState, useRef, useEffect } from 'react'
-// import CatrgoryItem from '../components/post/CatrgoryItem'
-// import GoodsItem from '../components/post/GoodsItem'
+import CatrgoryItem from '../components/post/CatrgoryItem'
+import GoodsItem from '../components/post/GoodsItem'
 import AttachItem from '../components/post/AttachItem'
-import { ContentItems,GoodsItem, CategoryItem } from '../components/post'
 
 // 카테고리, 품목
 // const [goods, setgoods] = useState('')
@@ -23,7 +22,7 @@ const PostCreatePage = () => {
     const toggleBoardDropdown = () => {
         setBoardDropdownOpen((prev) => !prev)
     }
-    // console.log(isBoardDropdownOpen)
+    console.log(isBoardDropdownOpen)
 
     const handleSelectBoard = (board, e) => {
         e.stopPropagation() // 이벤트 전파 중단
@@ -69,7 +68,7 @@ const PostCreatePage = () => {
                         </Li>
                         {selectedBoard !== '자유게시판' && (
                             <Li {...categoryCommon} {...li}>
-                                카테고리 <CategoryItem selectedBoard={selectedBoard} onCategorySelect={setCategory} />
+                                카테고리 <CatrgoryItem selectedBoard={selectedBoard} onCategorySelect={setCategory} />
                             </Li>
                         )}
                         {selectedBoard !== '자유게시판' && category && (
@@ -78,8 +77,10 @@ const PostCreatePage = () => {
                             </Li>
                         )}
                     </Ul>
+                    <AttachItem />
 
                     <Box {...postform} display="flex">
+                        {/* <Text width="50px">제목:</Text> */}
                         <TextField
                             label="제목"
                             className="1"
@@ -104,13 +105,35 @@ const PostCreatePage = () => {
                             }}
                         />
                     </Box>
-              
-                    <Box {...postform}  display="flex" border="1px solid black" backgroundColor="pink" >
-                        <ContentItems />
-                        {/* <TextField multiline {...textArea} /
-                        > */}
-
-                    
+                    {/* <Text {...postform} backgroundColor="green" display="flex">
+                        내용
+                    </Text> */}
+                    <Box {...postform} backgroundColor="white" display="flex">
+                        <TextField
+                            label="글내용"
+                            width="100%"
+                            height="100%"
+                            multiline
+                            rows="30"
+                            type="text"
+                            fsFontSize="12px"
+                            atvAfterWidth="50px"
+                            atvAfterLeft="8px"
+                            name="title"
+                            value={content}
+                            className="1"
+                            borderBreak
+                            padding="10px"
+                            labelTop="10px"
+                            fsLabelTop="-7px"
+                            fsLabelLeft="15px"
+                            borderRadius="4px"
+                            border="1px solid rgba(0,0,0,0.7)"
+                            autoComplete="off"
+                            onChange={(e) => {
+                                setContent(e.target.value)
+                            }}
+                        />
                     </Box>
                 </Box>
             </form>
@@ -149,37 +172,3 @@ const li = {
     backgroundColor: 'lightblue',
     paddingSide: '20px',
 }
-
-const textArea = {
-    // width: '100%',
-    height: 'auto',
-    type: 'text',
-    padding: '10px',
-    
-}
-
-/* <TextField
-    label="글내용"
-    width="100%"
-    height="100%"
-    multiline
-    rows="30"
-    type="text"
-    fsFontSize="12px"
-    atvAfterWidth="50px"
-    atvAfterLeft="8px"
-    name="title"
-    value={content}
-    className="1"
-    borderBreak
-    padding="10px"
-    labelTop="10px"
-    fsLabelTop="-7px"
-    fsLabelLeft="15px"
-    borderRadius="4px"
-    border="1px solid rgba(0,0,0,0.7)"
-    autoComplete="off"
-    onChange={(e) => {
-        setContent(e.target.value)
-    }}
-/> */

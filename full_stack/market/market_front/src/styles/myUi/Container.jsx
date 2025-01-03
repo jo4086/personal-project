@@ -1,13 +1,18 @@
-import { propsFilter } from './util'
+import { propsFilter,filterProps } from './util'
 import * as a from './styles/customStyled'
 
 // import * as a from '../customStyled'
 // import filterPropsByLayout from './utils'
 
 const Container = ({ display="flex", children, style, ...props }) => {
-    const styledProps = propsFilter(props, display)
+    const filteredProps = filterProps(props, display, true)
+
+    // console.log(filteredProps)
+    // const { styledProps, otherProps } = propsFilter(props, display, true)
+
+    // const styledProps = propsFilter(props, display)
     return (
-        <a.Container $display={display} style={style} {...styledProps}>
+        <a.Container $display={display}  {...filteredProps}>
             {children}
         </a.Container>
     )

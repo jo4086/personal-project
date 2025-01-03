@@ -6,7 +6,7 @@ export const flexPropsKeys = [
     'gap',
     'alignSelf',
     'justifySelf',
-    // 'flexGrow'
+    'flexGrow',
 ]
 // ;('')
 // 그리드 박스 관련 속성
@@ -80,12 +80,16 @@ export const commonPropsKeys = [
     'cursor',
     'position',
     'labelTop',
+    'labelLeft',
     'fsLabelLeft',
     'fsLabelTop',
     'zIndex',
     'atvAfterWidth',
     'fsFontSize',
     'atvAfterLeft',
+    'objectFit',
+    'resize',
+    // 'lineHeight',
 ]
 
 export const tablePropsKeys = [
@@ -125,9 +129,10 @@ const stateKeys = createStateKeys(commonPropsKeys, textPropsKeys)
 
 let validKeysCache = {} // display별로 캐싱
 
-const propsFilter = (props, display, text = true) => {
+const filterStyleProps = (props, display, text = true) => {
+    // console.log(display)
     if (!validKeysCache[display]) {
-        // console.log(`Generating valid keys for ${display}...`)
+        console.log(`Generating valid keys for ${display}...`)
 
         const layoutKeys = {
             flex: [...flexPropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],
@@ -139,28 +144,28 @@ const propsFilter = (props, display, text = true) => {
 
         validKeysCache[display] = [...(layoutKeys[display] || [...commonPropsKeys, ...Object.values(stateKeys).flat()]), ...(text ? textPropsKeys : [])]
     }
-
     const validKeys = validKeysCache[display]
     const validKeysSet = new Set(validKeys)
 
     // CSS 속성 필터링 및 나머지 속성 분리
-    const filtered = { styledProps: {}, otherProps: {} }
+    const filtered = { styled: {}, other: {} }
 
     Object.keys(props).forEach((key) => {
         const cleanKey = key.startsWith('$') ? key.slice(1) : key
 
         if (validKeysSet.has(cleanKey)) {
-            // CSS 속성은 $ 접두어 붙여서 styledProps에 저장
-            filtered.styledProps[`$${cleanKey}`] = props[key]
+            // CSS 속성은 $ 접두어 붙여서 styled에 저장
+            filtered.styled[`$${cleanKey}`] = props[key]
         } else {
-            // 나머지 속성은 otherProps에 저장
-            filtered.otherProps[key] = props[key]
+            // 나머지 속성은 other에 저장
+            filtered.other[key] = props[key]
         }
     })
 
+    // console.log(layoutKeys)
     return filtered
 }
-export default propsFilter
+export default filterStyleProps
 
 // const validKeys = layoutKeys[display] || commonPropsKeys // layout이 없으면 공통 속성만
 
@@ -172,7 +177,7 @@ const validKeys = [
 
 */
 /*
-const propsFilter = (props, display, text = true) => {
+const filterStyleProps = (props, display, text = true) => {
     if (!validKeysCache[display]) {
         const layoutKeys = {
             flex: [...flexPropsKeys, ...commonPropsKeys, ...Object.values(stateKeys).flat()],

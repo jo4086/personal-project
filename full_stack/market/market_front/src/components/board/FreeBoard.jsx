@@ -105,7 +105,7 @@ const commonTr = {
     textAlign: 'center',
     lineHeight: '30px',
     height: '30px',
-    paddding: '0',
+    padding: '0',
 }
 
 const commonTh = {
@@ -113,7 +113,7 @@ const commonTh = {
     textAlign: 'center',
     lineHeight: '30px',
     height: '30px',
-    paddding: '0',
+    padding: '0',
     type: 'th',
 }
 const commonTd = {
@@ -121,6 +121,6 @@ const commonTd = {
     textAlign: 'center',
     lineHeight: '30px',
     height: '30px',
-    paddding: '0',
+    padding: '0',
     type: 'td',
 }

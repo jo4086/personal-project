@@ -144,7 +144,7 @@ const Signup = () => {
                                 type="text"
                                 name="userName"
                                 value={name}
-                                flexGlow="1"
+                                flexGrow="1"
                                 fieldWidth="100%"
                                 autoComplete="username"
                                 placeholder="* 필수"
@@ -155,6 +155,7 @@ const Signup = () => {
                                     setName(e.target.value)
                                 }}
                                 {...textFieldDefaultProps}
+                                {...labelStyle}
                             />
                             {status.phone === 'success' && phone ? <Text height="14px" lineHeight="10px" color="	#00B6FF" fontSize="10px"></Text> : <Text height="0px"></Text>}
                         </Box>
@@ -166,7 +167,7 @@ const Signup = () => {
                                 color={textColor}
                                 value={phone}
                                 fieldWidth="0   q0%"
-                                flexGlow="1"
+                                flexGrow="1"
                                 autoComplete="tel"
                                 placeholder="* 필수"
                                 phrStyles={phrStyles}
@@ -175,6 +176,7 @@ const Signup = () => {
                                 onFocus={handleFocus}
                                 onBlur={(e) => handleBlur('phone', e.target.value)}
                                 {...textFieldDefaultProps}
+                                {...labelStyle}
                             />
                             {status.phone === 'success' && phone ? (
                                 <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
@@ -200,6 +202,7 @@ const Signup = () => {
                             }}
                             onBlur={(e) => handleBlur('email', e.target.value)}
                             {...textFieldDefaultProps}
+                            {...labelStyle}
                         />
                         {status.email === 'success' && email ? (
                             <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
@@ -224,6 +227,7 @@ const Signup = () => {
                             }}
                             onBlur={(e) => handleBlur('address', e.target.value)}
                             {...textFieldDefaultProps}
+                            {...labelStyle}
                         />{' '}
                         {status.address === 'success' && address ? (
                             <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
@@ -250,6 +254,7 @@ const Signup = () => {
                                 }}
                                 onBlur={(e) => handleBlur('userId', e.target.value)}
                                 {...textFieldDefaultProps}
+                                {...labelStyle}
                             />{' '}
                             {status.userId === 'success' && userId ? (
                                 <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
@@ -273,6 +278,7 @@ const Signup = () => {
                                 }}
                                 onBlur={(e) => handleBlur('nick', e.target.value)}
                                 {...textFieldDefaultProps}
+                                {...labelStyle}
                             />{' '}
                             {status.nick === 'success' && nick ? (
                                 <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
@@ -295,6 +301,7 @@ const Signup = () => {
                             className="Input"
                             onChange={(e) => setPassword(e.target.value)}
                             {...textFieldDefaultProps}
+                            {...labelStyle}
                         />
                         <TextField
                             label="비밀번호 확인" // 패스워드
@@ -308,6 +315,7 @@ const Signup = () => {
                             onChange={(e) => setConfirmPassword(e.target.value)}
                             onBlur={(e) => handleBlur('confirmPassword', e.target.value, password)}
                             {...textFieldDefaultProps}
+                            {...labelStyle}
                         />
                     </Box>
                     <Text {...text}>출금/환불 계좌</Text>
@@ -326,6 +334,7 @@ const Signup = () => {
                             }}
                             onBlur={(e) => handleBlur('withdrawal', e.target.value)}
                             {...textFieldDefaultProps}
+                            {...labelStyle}
                         />{' '}
                         {status.withdrawal === 'success' && withdrawal ? (
                             <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
@@ -350,6 +359,7 @@ const Signup = () => {
                             }}
                             onBlur={(e) => handleBlur('refund', e.target.value)}
                             {...textFieldDefaultProps}
+                            {...labelStyle}
                         />{' '}
                         {status.refund === 'success' && refund ? (
                             <Text paddingLeft="4px" height="14px" lineHeight="11px" fontSize="11px" color="#00B6FF">
@@ -405,7 +415,7 @@ const textFieldDefaultProps = {
     border: 'none',
     boxShadow: '0px 0px 1px 1px rgba(0,0,0,0.5)',
     fontSize: '1em',
-    backroundColor: 'black',
+    // backgroundColor: 'black',
     //    tabindex: '-1',
     //    caretColor: 'black',
 }
@@ -431,8 +441,15 @@ const hyper = {
 
 const phrStyles = {
     textAlign: 'end',
-    paddingRight: '5px',
-    whiteSpace: 'pre-line',
+    paddingLeft: '20px',
+    // color:'red'
+    // paddingRight: '5px',
+    // whiteSpace: 'pre-line',
+}
+
+const labelStyle = {
+    labelLeft: '13px',
+    labelTop: '20px'
 }
 
 /*   if (input.startsWith('01')) {

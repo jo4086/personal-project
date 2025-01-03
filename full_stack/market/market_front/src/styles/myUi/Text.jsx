@@ -12,7 +12,8 @@ const Text = ({ type = 'p', fontSize = null, display = 'block', children, style,
         const reSizeFontSize = `${chooseFontSize * (DEFAULT_FONT_SIZES[type] || 1)}px`
         props.fontSize = reSizeFontSize
 
-        const styledProps = propsFilter(props, display, true)
+        const { styledProps, otherProps } = propsFilter(props, display, true)
+        // const styledProps = propsFilter(props, display, true)
 
         return (
             <a.Text as={type} className={className} onClick={onClick} $display={display} style={style} {...styledProps}>
@@ -22,7 +23,8 @@ const Text = ({ type = 'p', fontSize = null, display = 'block', children, style,
     }
     //    }
 
-    const styledProps = propsFilter(props, display, true)
+    const { styledProps, otherProps } = propsFilter(props, display, true)
+    // const styledProps = propsFilter(props, display, true)
 
     return (
         <a.Text as={type} className={className} onClick={onClick} $display={display} style={style} {...styledProps}>
