@@ -1,48 +1,70 @@
-import React, { useRef, useState } from 'react'
-import { TextField } from '../../styles/myUi'
+import React, { useRef, useState, useEffect } from 'react'
 
 const DynamicTextField = ({ value, onChange }) => {
-    const [rows, setRows] = useState(1)
+    const [height, setHeight] = useState('auto')
     const textareaRef = useRef(null)
+    const hiddenTextareaRef = useRef(null)
 
-    const handleChange = (event) => {
-        const textareaLineHeight = 24 // 줄 높이
+    useEffect(() => {
+        adjustHeight() // 초기 렌더링 시 높이 조정
+    }, [value]) // value 변경 시 재조정
+
+    const adjustHeight = () => {
+        const hiddenTextarea = hiddenTextareaRef.current
         const textarea = textareaRef.current
-        const previousRows = textarea.rows
 
-        textarea.rows = 1 // 높이 초기화
-        const currentRows = Math.floor(textarea.scrollHeight / textareaLineHeight)
-
-        if (currentRows === previousRows) {
-            textarea.rows = currentRows
+        if (hiddenTextarea) {
+            hiddenTextarea.value = textarea.value // 숨겨진 textarea에 값 복사
+            hiddenTextarea.style.height = '24px' // 높이 초기화
+            const newHeight = hiddenTextarea.scrollHeight // 숨겨진 textarea의 스크롤 높이 계산
+            setHeight(`${newHeight}px`) // 새 높이 설정
         }
+    }
 
-        setRows(currentRows > 30 ? 30 : currentRows) // 최대 줄 수 제한
-        onChange(event.target.value) // 부모로 변경된 값 전달
+    const handleChange = (e) => {
+        onChange(e.target.value) // 부모 컴포넌트로 변경된 값 전달
     }
 
     return (
-        <textarea
-            ref={textareaRef}
-            value={value}
-            onChange={handleChange}
-            rows={rows}
-            style={{
-                resize: 'none',
-                overflow: 'hidden',
-                lineHeight: '24px',
-                height: `${rows * 24}px`,
-                width: '100%',
-                outline: 'none',
-                border: ' none',
-                margin: '5px 0',
-            }}
-        />
+        <div style={{ position: 'relative', width: '100%' }}>
+            {/* 숨겨진 textarea */}
+            <textarea
+                ref={hiddenTextareaRef}
+                readOnly
+                style={{
+                    // visibility: 'hidden',
+                    position: 'absolute',
+                    overflow: 'hidden',
+                    height: '0',
+                    zIndex: '-1',
+                    whiteSpace: 'pre-wrap',
+                    wordWrap: 'break-word',
+                    lineHeight: '24px',
+                    width: '100%',
+                    padding: '8px',
+                    // top: '300px',
+                }}
+            />
+            {/* 실제 사용자의 textarea */}
+            <textarea
+                ref={textareaRef}
+                value={value}
+                onChange={handleChange}
+                style={{
+                    // visibility: 'hidden',
+                    resize: 'none',
+                    overflow: 'hidden',
+                    height: height, // 동적 높이 적용
+                    lineHeight: '24px',
+                    width: '100%',
+                    outline: 'none',
+                    border: '1px solid #ccc',
+                    padding: '8px',
+                    boxSizing: 'border-box',
+                }}
+            />
+        </div>
     )
 }
 
 export default DynamicTextField
-
-const sty = {
-    outline: 'none',
-}
