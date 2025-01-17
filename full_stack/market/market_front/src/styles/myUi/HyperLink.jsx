@@ -1,7 +1,7 @@
 import { propsFilter, filterProps } from './util'
 import * as a from './styles/customStyled'
 
-const HyperLink = ({  children, display = 'inline',  ...props }) => {
+const HyperLink = ({ children, display = 'inline', ...props }) => {
     const filteredProps = filterProps(props, display, true)
 
     // console.log(props)

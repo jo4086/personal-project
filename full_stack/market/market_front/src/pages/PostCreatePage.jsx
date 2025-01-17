@@ -1,10 +1,11 @@
 import { Container, Text, Box, Ul, Li, Divider, InputField, TextField } from '../styles/myUi'
 import { theme, dropdownBox, dropdownItems, dropdownItem, postform } from '../styles/myUi/common'
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect, useCallback } from 'react'
 // import CatrgoryItem from '../components/post/CatrgoryItem'
 // import GoodsItem from '../components/post/GoodsItem'
 import AttachItem from '../components/post/AttachItem'
-import { ContentItems,GoodsItem, CategoryItem } from '../components/post'
+import { ContentItems, GoodsItem, CategoryItem } from '../components/post'
+import Button from '../uinamic/components/input/Button'
 
 // 카테고리, 품목
 // const [goods, setgoods] = useState('')
@@ -36,6 +37,10 @@ const PostCreatePage = () => {
             setBoardDropdownOpen(false) // 드롭다운 외부 클릭 시 닫기
         }
     }
+
+    const handleSubmit = useCallback(() => {
+
+    })
 
     useEffect(() => {
         document.addEventListener('mousedown', closeDropdown)
@@ -104,20 +109,34 @@ const PostCreatePage = () => {
                             }}
                         />
                     </Box>
-              
-                    <Box {...postform}  display="flex" border="1px solid black" backgroundColor="pink" >
+
+                    <Box {...postform} display="flex" border="1px solid black" backgroundColor="pink">
                         <ContentItems />
                         {/* <TextField multiline {...textArea} /
                         > */}
-
-                    
                     </Box>
+
+                    <Button type="submit" {...submitStyle}>등록</Button>
                 </Box>
             </form>
         </Container>
     )
 }
 export default PostCreatePage
+
+const submitStyle = {
+    width: '100px',
+    margin: '0px 30px 10px auto',
+    padding: '5px',
+    border: '1px solid rgba(0,0,0,0.5)',
+    borderRadius: '5px',
+    backgroundColor: 'rgba(10,100,190,0.5)',
+    cursor: 'pointer',
+    justifyContent: 'center',
+    hover: {
+        backgroundColor: 'rgba(10,100,190,0.6)'
+    }
+}
 
 const common = {
     width: '100%',
@@ -155,7 +174,6 @@ const textArea = {
     height: 'auto',
     type: 'text',
     padding: '10px',
-    
 }
 
 /* <TextField

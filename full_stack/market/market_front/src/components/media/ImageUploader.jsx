@@ -27,14 +27,13 @@ function ImageUploader() {
     }
 
     const handleSave = () => {
-        // localStorage.setItem('uploadedImages', JSON.stringify(images)) // 이미지 저장
         if (window.opener) {
             window.opener.postMessage(
                 {
                     type: 'UPLOAD_IMAGES',
                     payload: images, // 업로드된 이미지 데이터를 부모 창으로 전달
                 },
-                '*',
+                'http://localhost:3010/post/create',
             )
         }
         window.close() // 창 닫기
@@ -117,12 +116,12 @@ const imgNum = {
     top: '0px',
     justifyContent: 'center',
     alignItems: 'center',
-    // border: '1px solid black',
     borderRight: '1px solid rgba(100, 160, 200, 0.77)',
     borderBottom: '1px solid rgba(100, 160, 200, 0.77)',
     fontSize: '13px',
     boxSizing: 'border-box',
 }
+
 const imgRemove = {
     width: '20px',
     height: '20px',

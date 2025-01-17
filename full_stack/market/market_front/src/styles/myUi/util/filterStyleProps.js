@@ -8,7 +8,6 @@ export const flexPropsKeys = [
     'justifySelf',
     'flexGrow',
 ]
-// ;('')
 // 그리드 박스 관련 속성
 export const gridPropsKeys = [
     'display', // 반드시 'grid'여야 유효

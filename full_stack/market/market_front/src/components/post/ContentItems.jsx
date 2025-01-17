@@ -7,23 +7,31 @@ import { HTML5Backend } from 'react-dnd-html5-backend'
 
 const ItemType = 'CONTENT'
 
-const ContentItems = () => {
+const ContentItems = (handleSubmit) => {
     const [blocks, setBlocks] = useState([{ id: '1', type: 'text', content: '' }])
     const [focusedIndex, setFocusedIndex] = useState(null) // 포커싱된 텍스트 필드
 
     useEffect(() => {
         const handleMessage = (event) => {
+            const allowedOrigin = 'http://localhost:3010'
+            if (event.origin !== allowedOrigin) {
+                console.warn('Unauthorized origin:', event.origin)
+                return
+            }
+
             if (event.data.type === 'UPLOAD_IMAGES') {
                 const newBlocks = event.data.payload.map((fileData) => ({
                     id: fileData.id,
                     type: 'image',
                     src: fileData.src,
+                    file: fileData.file
                 }))
                 insertImages(newBlocks)
             }
         }
 
         window.addEventListener('message', handleMessage)
+        console.log(window.addEventListener('message', handleMessage))
         return () => {
             window.removeEventListener('message', handleMessage)
         }
@@ -112,19 +120,27 @@ const ContentItems = () => {
         setBlocks(updatedBlocks)
     }
 
+    // 이미지 블록 삭제
+    const handleRemove = (id) => {
+        setBlocks((prev) => prev.filter((block) => block.id !== id)) // 해당 ID를 가진 블록 제거
+    }
+
+    console.log('blocks:', blocks)
+
     return (
         <DndProvider backend={HTML5Backend}>
             <Box {...Container}>
                 <Box {...utilBar}>
                     <FaImages size="25" onClick={() => window.open('/image-uploader', '_blank', 'width=500,height=500')} style={imgIconStyle} />
                 </Box>
-                <Box width="100%" padding="10px 20px" flexDirection="column">
+                <Box width="100%" padding="10px 0px" flexDirection="column">
                     {blocks.map((block, index) => (
                         <React.Fragment key={block.id}>
                             <Block
                                 block={block}
                                 index={index}
                                 onTextChange={handleTextChange}
+                                onRemove={handleRemove}
                                 moveBlock={moveBlock}
                                 handleDrop={handleDrop}
                                 setFocusedIndex={setFocusedIndex} // 포커싱 상태 전달
@@ -137,9 +153,10 @@ const ContentItems = () => {
                                         padding: '10px',
                                         backgroundColor: '#f0f0f0',
                                         margin: '5px 0',
+                                        opacity: '0'
                                     }}
                                     onClick={() => handleAddTextBetween(index)}>
-                                    + Add Text Here
+                                    {/* + Add Text Here */}
                                 </div>
                             )}
                         </React.Fragment>
@@ -149,7 +166,8 @@ const ContentItems = () => {
         </DndProvider>
     )
 }
-const Block = ({ block, index, onTextChange, moveBlock, handleDrop }) => {
+
+const Block = ({ block, index, onTextChange, moveBlock, handleDrop, onRemove }) => {
     const ref = React.useRef(null)
 
     const [, drop] = useDrop({
@@ -184,19 +202,24 @@ const Block = ({ block, index, onTextChange, moveBlock, handleDrop }) => {
             ref={ref}
             style={{
                 opacity: isDragging ? 0.5 : 1,
-                marginBottom: '10px',
+                marginBottom: '0px',
             }}>
             {block.type === 'image' && (
-                <img
-                    src={block.src}
-                    alt="Uploaded"
-                    style={{
-                        maxWidth: '500px',
-                        width: '100%',
-                        height: 'auto',
-                        margin: '5px 0',
-                    }}
-                />
+                <Box maxWidth="500px" margin="5px 0" position="relative">
+                    <img
+                        src={block.src}
+                        alt="Uploaded"
+                        style={{
+                            maxWidth: '500px',
+                            width: '100%',
+                            height: 'auto',
+                            margin: '0',
+                        }}
+                    />
+                    <Box position="absolute" right="0px" width="20px" height="20px" justifyContent="center" alignItems="center" backgroundColor="#ff5555" cursor="pointer" fontWeight="bold" onClick={() => onRemove(block.id)}>
+                        ⨯
+                    </Box>
+                </Box>
             )}
             {block.type === 'text' && <DynamicTextField value={block.content} onChange={(newValue) => onTextChange(index, newValue)} />}
         </div>
@@ -212,6 +235,8 @@ const Container = {
 const utilBar = {
     width: '100%',
     gap: '10px',
+    backgroundColor: 'gray',
+    padding: '3px',
 }
 const imgIconStyle = {
     border: '1px solid black',
